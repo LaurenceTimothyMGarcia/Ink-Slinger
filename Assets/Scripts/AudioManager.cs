@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour
     }
 
     void Start(){
-        StartCoroutine(testSounds());
+        //StartCoroutine(testSounds());
     }
 
     IEnumerator testSounds() {
