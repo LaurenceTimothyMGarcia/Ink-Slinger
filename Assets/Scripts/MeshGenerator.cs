@@ -24,6 +24,7 @@ public class MeshGenerator : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
 
         GenerateInitialQuadList();
+        RunGeneration(iterations);
         UpdateMesh();
     }
 
@@ -36,6 +37,26 @@ public class MeshGenerator : MonoBehaviour
             new Vector3(initialWidth/2,initialHeight/2,0),
             new Vector3(initialWidth/2,-initialHeight/2,0)
         ));
+    }
+
+    // runs procedural generation on the face
+    // generates # of faces == 2^iterations
+    void RunGeneration(int iterations) {
+        for(int i = 0; i < iterations; i++) {
+            List<Quadrilateral> oldList = new List<Quadrilateral>(quads);
+            quads.Clear();
+
+            foreach (Quadrilateral oldQuad in oldList) {
+                Debug.Log("quadrilateral split!");
+                Vector3 topMidpoint = (oldQuad.v1() + oldQuad.v4()) / 2;
+                Vector3 bottomMidpoint = (oldQuad.v2() + oldQuad.v3()) / 2;
+
+                // midpoint displacement goes here
+
+                quads.Add(new Quadrilateral(oldQuad.v1(), oldQuad.v2(), bottomMidpoint, topMidpoint));
+                quads.Add(new Quadrilateral(topMidpoint, bottomMidpoint, oldQuad.v3(), oldQuad.v4()));
+            }
+        }
     }
 
     // takes the current list of quadrilaterals and generates a mesh from its coordinates.
@@ -77,4 +98,9 @@ class Quadrilateral {
             v1,v2,v3,v4
         };
     }
+
+    public Vector3 v1() {return vertices[0];}
+    public Vector3 v2() {return vertices[1];}
+    public Vector3 v3() {return vertices[2];}
+    public Vector3 v4() {return vertices[3];}
 }
