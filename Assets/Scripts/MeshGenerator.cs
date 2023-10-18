@@ -13,6 +13,8 @@ public class MeshGenerator : MonoBehaviour
     public float initialHeight = 5;
     public int iterations = 1;
 
+    public float displacentRange = 1;
+
     // Start is called before the first frame update
     void Start() {
         GenerateNewMesh();
@@ -51,7 +53,15 @@ public class MeshGenerator : MonoBehaviour
                 Vector3 topMidpoint = (oldQuad.v1() + oldQuad.v4()) / 2;
                 Vector3 bottomMidpoint = (oldQuad.v2() + oldQuad.v3()) / 2;
 
-                // midpoint displacement goes here
+                // midpoint displacement
+                // get direction of each edge (we want the displacements to occur at a 90 degree angle on the y axis from the edge)
+                Vector3 topEdgeDirection = Vector3.Normalize(oldQuad.v1() - oldQuad.v4());
+                Vector3 bottomEdgeDirection = Vector3.Normalize(oldQuad.v2() - oldQuad.v3());
+                // this rotation is a 90 degree rotation around the y axis which should hopefully point in the right direction
+                Quaternion rotation = Quaternion.Euler(0,90,0);
+                // displace the midpoints
+                topMidpoint += rotation * topEdgeDirection * Random.Range(-displacentRange/2, displacentRange/2);
+                bottomMidpoint += rotation * bottomEdgeDirection * Random.Range(-displacentRange/2, displacentRange/2);
 
                 quads.Add(new Quadrilateral(oldQuad.v1(), oldQuad.v2(), bottomMidpoint, topMidpoint));
                 quads.Add(new Quadrilateral(topMidpoint, bottomMidpoint, oldQuad.v3(), oldQuad.v4()));
