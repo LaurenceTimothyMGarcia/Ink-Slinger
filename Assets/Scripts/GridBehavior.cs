@@ -195,6 +195,29 @@ public class GridBehavior : MonoBehaviour
             {
                 tempList.Add(gridArray[x-1, y]);
             }
+
+            GameObject tempObj = FindClosest(gridArray[endX, endY].transform, tempList);
+            path.Add(tempObj);
+            x = tempObj.GetComponent<GridStat>().x;
+            y = tempObj.GetComponent<GridStat>().y;
+            tempList.Clear();
         }
+    }
+
+    GameObject FindClosest(Transform targetLocation, List<GameObject> list)
+    {
+        float currentDistance = scale * rows * columns;
+        int indexNumber = 0;
+
+        for(int i = 0; i < list.Count; i++)
+        {
+            if(Vector3.Distance(targetLocation.position, list[i].transform.position) < currentDistance)
+            {
+                currentDistance = Vector3.Distance(targetLocation.position, list[i].transform.position);
+                indexNumber = i;
+            }
+        }
+
+        return list[indexNumber];
     }
 }
