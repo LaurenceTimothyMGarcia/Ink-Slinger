@@ -63,4 +63,49 @@ public class GridBehavior : MonoBehaviour
 
         gridArray[startX, startY].GetComponent<GridStat>().visited = 0; //0 is starting point
     }
+
+    bool TestDirection(int x, int y, int step, int direction)
+    {
+        //Which case to use: 1 = up, 2 = right, 3 = down, 4 = left
+        switch(direction)
+        {
+            case 4:
+                if(x-1 > -1 && gridArray[x-1, y] && gridArray[x-1, y].GetComponent<GridStat>().visited == step)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case 3:
+                if(y-1 > -1 && gridArray[x, y-1] && gridArray[x, y-1].GetComponent<GridStat>().visited == step)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case 2:
+                if(x+1 < columns && gridArray[x+1, y] && gridArray[x+1, y].GetComponent<GridStat>().visited == step)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case 1:
+                if(y+1 < rows && gridArray[x, y+1] && gridArray[x, y+1].GetComponent<GridStat>().visited == step)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+        }
+        return false;
+    }
 }
