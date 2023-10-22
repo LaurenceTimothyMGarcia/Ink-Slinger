@@ -108,4 +108,12 @@ public class GridBehavior : MonoBehaviour
         }
         return false;
     }
+
+    void SetVisited(int x, int y, int step)
+    {
+        if(gridArray[x,y])
+        {
+            gridArray[x,y].GetComponent<GridStat>().visited = step;
+        }
+    }
 }
