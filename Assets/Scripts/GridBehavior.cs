@@ -39,8 +39,8 @@ public class GridBehavior : MonoBehaviour
                                     gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 
                                     leftBottomLocation.y, leftBottomLocation.z + scale * j), Quaternion.identity);
                 obj.transform.SetParent(gameObject.transform);
-                obj.GetComponent<GridStats>().x = i;
-                obj.GetComponent<GridStats>().y = j;
+                obj.GetComponent<GridStat>().x = i;
+                obj.GetComponent<GridStat>().y = j;
 
             }
         }
