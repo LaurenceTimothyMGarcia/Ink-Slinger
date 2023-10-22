@@ -9,10 +9,17 @@ public class GridBehavior : MonoBehaviour
     public int scale = 1;
     public GameObject gridPrefab;
     public Vector3 leftBottomLocation = new Vector3(0, 0, 0);
+    public GameObject [,] gridArray;
+    public int startX = 0;
+    public int startY = 0;
+    public int endX = 2;
+    public int endY = 2;
     
     // Start is called before the first frame update
     void Awake()
     {
+        gridArray = new GameObject[columns, rows];
+
         if(gridPrefab)
         {
             GenerateGrid();
@@ -42,7 +49,18 @@ public class GridBehavior : MonoBehaviour
                 obj.GetComponent<GridStat>().x = i;
                 obj.GetComponent<GridStat>().y = j;
 
+                gridArray[i, j] = obj;
             }
         }
+    }
+
+    void InitialSetUp()
+    {
+        foreach (GameObject obj in gridArray)
+        {
+            obj.GetComponent<GridStat>().visited = -1; //Everything on grid is -1
+        }
+
+        gridArray[startX, startY].GetComponent<GridStat>().visited = 0; //0 is starting point
     }
 }
