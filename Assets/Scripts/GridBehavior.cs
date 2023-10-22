@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridBehavior : MonoBehaviour
 {
+    public bool FindDistance = false;
     public int rows = 10;
     public int columns = 10;
     public int scale = 1;
@@ -34,7 +35,12 @@ public class GridBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(FindDistance)
+        {
+            SetDistance();
+            SetPath();
+            FindDistance = false;
+        }
     }
 
     void GenerateGrid()
@@ -129,7 +135,7 @@ public class GridBehavior : MonoBehaviour
         {
             foreach(GameObject obj in gridArray)
             {
-                if(obj.GetComponent<GridStat>().visited == step - 1)
+                if(obj && obj.GetComponent<GridStat>().visited == step - 1)
                 {
                     TestFourDirections(obj.GetComponent<GridStat>().x, obj.GetComponent<GridStat>().y, step);
                 }
