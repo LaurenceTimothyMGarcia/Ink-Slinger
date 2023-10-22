@@ -14,6 +14,7 @@ public class GridBehavior : MonoBehaviour
     public int startY = 0;
     public int endX = 2;
     public int endY = 2;
+    public List<GameObject> path = new List<GameObject>();
     
     // Start is called before the first frame update
     void Awake()
@@ -26,7 +27,7 @@ public class GridBehavior : MonoBehaviour
         }
         else
         {
-            print("Missing grid prefab");
+            print("Missing grid prefab.");
         }
     }
 
@@ -154,6 +155,46 @@ public class GridBehavior : MonoBehaviour
         if(TestDirection(x, y, - 1, 4))
         {
             SetVisited(x - 1, y, step);
+        }
+    }
+
+    void SetPath()
+    {
+        int step;
+        int x = endX;
+        int y = endY;
+        List<GameObject> tempList = new List<GameObject>();
+
+        path.Clear();
+        if(gridArray[endX, endY] && gridArray[endX, endY].GetComponent<GridStat>().visited > 0)
+        {
+            path.Add(gridArray[x, y]);
+            step = gridArray[x, y].GetComponent<GridStat>().visited - 1;
+        }
+        else
+        {
+            print("Can't reach desired location.");
+            return;
+        }
+
+        for(int i = step; step > -1; step--)
+        {
+            if(TestDirection(x, y, step, 1))
+            {
+                tempList.Add(gridArray[x, y+1]);
+            }
+            if(TestDirection(x, y, step, 2))
+            {
+                tempList.Add(gridArray[x+1, y]);
+            }
+            if(TestDirection(x, y, step, 3))
+            {
+                tempList.Add(gridArray[x, y-1]);
+            }
+            if(TestDirection(x, y, step, 4))
+            {
+                tempList.Add(gridArray[x-1, y]);
+            }
         }
     }
 }
