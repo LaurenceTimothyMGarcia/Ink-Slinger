@@ -116,4 +116,44 @@ public class GridBehavior : MonoBehaviour
             gridArray[x,y].GetComponent<GridStat>().visited = step;
         }
     }
+
+    void SetDistance()
+    {
+        InitialSetUp();
+        int x = startX;
+        int y = startY;
+        int [] testArray = new int [rows * columns];
+
+        for(int step = 1; step < rows*columns; step++)
+        {
+            foreach(GameObject obj in gridArray)
+            {
+                if(obj.GetComponent<GridStat>().visited == step - 1)
+                {
+                    TestFourDirections(obj.GetComponent<GridStat>().x, obj.GetComponent<GridStat>().y, step);
+                }
+            }
+        }
+    }
+
+    void TestFourDirections(int x, int y, int step)
+    {
+        //If node is -1, set it to the new step
+        if(TestDirection(x, y, -1, 1))
+        {
+            SetVisited(x, y + 1, step);
+        }
+        if(TestDirection(x, y, -1, 2))
+        {
+            SetVisited(x + 1, y, step);
+        }
+        if(TestDirection(x, y, -1, 3))
+        {
+            SetVisited(x, y - 1, step);
+        }
+        if(TestDirection(x, y, - 1, 4))
+        {
+            SetVisited(x - 1, y, step);
+        }
+    }
 }
