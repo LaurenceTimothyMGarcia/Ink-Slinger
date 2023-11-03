@@ -5,18 +5,23 @@ using UnityEngine.AI;
 
 public class RanglerBehavior : MonoBehaviour
 {
-    public NavMeshAgent agent;
+    //Navmesh removed just in case 
+    //public NavMeshAgent agent;
+
+    public GridBehavior rangler;
 
     public Transform player;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public float timeBtwAttacks, attackRange, health;
+    public float timeBtwAttacks, attackRange, sightRange, health;
 
     bool alrdyAttacked, playerInAttackRange;
 
+    float damageDealt = 1f;
+
     //Possibly will use this for puddles, could do either maybe?
-    //public static event Action<RanglerBehavior> OnEnemyKilled;
+    //public static event Action<EnemySystem> OnEnemyKilled;
 
     // Start is called before the first frame update
     void Start()
@@ -27,32 +32,36 @@ public class RanglerBehavior : MonoBehaviour
 
     private void Awake()
     {
-        //Whatever the player's name is, replace the string
+        //Whatever the player's name is, replace the string in the delimiter
         player = GameObject.Find("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
+        //agent = GetComponent<NavMeshAgent>(); 
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateState()
     {
         //Check if you can attack
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
         if (!playerInAttackRange) ChasePlayer();
         if (playerInAttackRange) AttackPlayer();
     }
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        //agent.SetDestination(player.position);
+        rangler.setEndX((int)player.position.x);
+        rangler.setEndY((int)player.position.y);
+        rangler.SetPath();
     }
 
     private void AttackPlayer()
     {
-        agent.SetDestination(transform.position);
+        //agent.SetDestination(transform.position);
         transform.LookAt(player);
         if (!alrdyAttacked)
         {
-            //attack code here for grid stuff
+            //attack code here like (player.health -= damageDealt, need player object?)
 
             alrdyAttacked = true;
             Invoke(nameof(ResetAttack), timeBtwAttacks);

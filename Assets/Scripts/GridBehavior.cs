@@ -164,7 +164,20 @@ public class GridBehavior : MonoBehaviour
         }
     }
 
-    void SetPath()
+    //changed the protection level of the below three functions
+    //and added set functions
+
+    public void setEndX(int x)
+    {
+        endX = x;
+    }
+
+    public void setEndY(int y)
+    {
+        endY = y;
+    }
+
+    public void SetPath()
     {
         int step;
         int x = endX;

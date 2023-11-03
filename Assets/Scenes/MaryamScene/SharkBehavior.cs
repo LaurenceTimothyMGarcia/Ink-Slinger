@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemySystem : MonoBehaviour
+public class SharkBehavior : MonoBehaviour
 {
-    public NavMeshAgent agent;
+    //Navmesh removed just in case 
+    //public NavMeshAgent agent;
+
+    public GridBehavior shark;
 
     public Transform player;
 
@@ -14,6 +17,8 @@ public class EnemySystem : MonoBehaviour
     public float timeBtwAttacks, attackRange, sightRange, health;
 
     bool alrdyAttacked, playerInAttackRange, playerInSightRange;
+
+    float damageDealt = 1f;
 
     //Shark only
     public Vector3 walkPoint;
@@ -32,13 +37,13 @@ public class EnemySystem : MonoBehaviour
 
     private void Awake()
     {
-        //Whatever the player's name is, replace the string
+        //Whatever the player's name is, replace the string in the delimiter
         player = GameObject.Find("Player").transform;
-        agent = GetComponent<NavMeshAgent>(); 
+        //agent = GetComponent<NavMeshAgent>(); 
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateState()
     {
         //Check if you can attack
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -55,7 +60,10 @@ public class EnemySystem : MonoBehaviour
 
         if(walkPointSet)
         {
-            agent.SetDestination(walkPoint);
+            //agent.SetDestination(walkPoint);
+            shark.setEndX((int)walkPoint.x);
+            shark.setEndY((int)walkPoint.y);
+            shark.SetPath();
         }
 
         Vector3 dToWalkPoint = transform.position - walkPoint;
@@ -70,7 +78,7 @@ public class EnemySystem : MonoBehaviour
 
     private void SearchWalkPoint()
     {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        //float randomY = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z);
@@ -83,16 +91,19 @@ public class EnemySystem : MonoBehaviour
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        //agent.SetDestination(player.position);
+        shark.setEndX((int)player.position.x);
+        shark.setEndY((int)player.position.y);
+        shark.SetPath();
     }
 
     private void AttackPlayer()
     {
-        agent.SetDestination(transform.position);
+        //agent.SetDestination(transform.position);
         transform.LookAt(player);
         if (!alrdyAttacked)
         {
-            //attack code here for grid stuff
+            //attack code here like (player.health -= damageDealt, need player object?)
 
             alrdyAttacked = true;
             Invoke(nameof(ResetAttack), timeBtwAttacks);
