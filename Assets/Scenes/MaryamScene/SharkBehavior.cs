@@ -16,7 +16,7 @@ public class SharkBehavior : MonoBehaviour
 
     public float timeBtwAttacks, attackRange, sightRange, health;
 
-    bool alrdyAttacked, playerInAttackRange, playerInSightRange;
+    public bool alrdyAttacked, playerInAttackRange, playerInSightRange;
 
     float damageDealt = 1f;
 

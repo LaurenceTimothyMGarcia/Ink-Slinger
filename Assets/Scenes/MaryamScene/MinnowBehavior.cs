@@ -11,9 +11,15 @@ public class MinnowBehavior : MonoBehaviour
 
     public GameObject Player;
 
+    public LayerMask whatIsPlayer;
+
     public float EnemyDistanceRun = 4.0f;
 
     public float health;
+
+    public float attackRange;
+
+    public bool playerInAttackRange;
 
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -51,6 +57,8 @@ public class MinnowBehavior : MonoBehaviour
             //The minnow moves randomly unless the player gets too close
             Patroling();
         }
+
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
     }
 
     private void Patroling()

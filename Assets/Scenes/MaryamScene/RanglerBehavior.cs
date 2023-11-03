@@ -16,7 +16,7 @@ public class RanglerBehavior : MonoBehaviour
 
     public float timeBtwAttacks, attackRange, sightRange, health;
 
-    bool alrdyAttacked, playerInAttackRange;
+    public bool alrdyAttacked, playerInAttackRange;
 
     float damageDealt = 1f;
 

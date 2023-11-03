@@ -47,8 +47,14 @@ public class TurnSystem : MonoBehaviour
         if (enemyInAttackRange)
         {
             damageDealt = 1;
-            shark.TakeDamage(damageDealt);
-            //depends on the enemy
+            if (shark.playerInAttackRange)
+            {
+                shark.TakeDamage(damageDealt);
+            } else if (rangler.playerInAttackRange) {
+                rangler.TakeDamage(damageDealt);
+            } else if (minnow.playerInAttackRange) {
+                minnow.TakeDamage(damageDealt);
+            }
         }
 
 
