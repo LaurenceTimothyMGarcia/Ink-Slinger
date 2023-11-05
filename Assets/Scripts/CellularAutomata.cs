@@ -40,6 +40,8 @@ public class CellularAutomata : MonoBehaviour
 
 // run a modified iteration of Game of Life
     void runIteration() {
+        // make a clone of the original grid
+        bool[,] oldGrid = (bool[,]) grid.Clone();
         for(int row = 0; row < rows; row++) {
             for (int col = 0; col < columns; col++) {
                 bool CurrentCellAlive = grid[row,col];
@@ -53,7 +55,7 @@ public class CellularAutomata : MonoBehaviour
                             // check if this neighbor is in bounds
                             if(CellInBounds(i,j)) {
                                 // if it's in bounds, check if this neighbor is alive and increase the count if so
-                                if(grid[i,j]) {
+                                if(oldGrid[i,j]) {
                                     AliveNeighborCount++;
                                 }
                             }

@@ -73,7 +73,7 @@ public class GridBehavior : MonoBehaviour
         {
             for(int j = 0; j < rows; j++)
             {
-                if(cellGrid[i,j]) {
+                if(!cellGrid[i,j]) {
                     GameObject obj = Instantiate(
                                         gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 
                                         leftBottomLocation.y, leftBottomLocation.z + scale * j), Quaternion.identity);
