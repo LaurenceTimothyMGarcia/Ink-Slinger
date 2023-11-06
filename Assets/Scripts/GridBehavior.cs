@@ -266,4 +266,20 @@ public class GridBehavior : MonoBehaviour
 
         return list[indexNumber];
     }
+
+    public bool IsPositionValid(int x, int y) {
+        if(gridArray[x,y]) {
+            return true;
+        }
+        return false;
+    }
+
+    public Vector3 GetWorldPosition(int x, int y) {
+        if(gridArray[x,y]) {
+            return gridArray[x,y].transform.position;
+        }
+        else {
+            return Vector3.zero;
+        }
+    }
 }
