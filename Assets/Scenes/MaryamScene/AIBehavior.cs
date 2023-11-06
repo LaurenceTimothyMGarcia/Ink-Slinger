@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridBehavior : MonoBehaviour
+public class AIBehavior : MonoBehaviour
 {
     public bool FindDistance = false;
     public int rows = 10;
@@ -164,8 +164,8 @@ public class GridBehavior : MonoBehaviour
         }
     }
 
+    //Just add the set functions to grid behavior if something breaks
     //changed the protection level of the below three functions
-    //and added set functions
 
     public void setEndX(int x)
     {
