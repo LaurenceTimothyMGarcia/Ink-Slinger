@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -167,6 +167,9 @@ MonoBehaviour:
   attackRange: 0
   sightRange: 0
   health: 0
+  alrdyAttacked: 0
+  playerInAttackRange: 0
+  playerInSightRange: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 0
 --- !u!65 &667404422
@@ -628,6 +631,7 @@ GameObject:
   - component: {fileID: 2118527977}
   - component: {fileID: 2118527976}
   - component: {fileID: 2118527975}
+  - component: {fileID: 2118527979}
   m_Layer: 0
   m_Name: Minnow
   m_TagString: Untagged
@@ -723,6 +727,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2118527979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118527972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5937319d8864c434fbe62239935028e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minnow: {fileID: 0}
+  Player: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  EnemyDistanceRun: 4
+  health: 0
+  attackRange: 0
+  playerInAttackRange: 0
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &2123710744
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,10 +868,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2123710744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ae72b17f39d3a243a8de79c096986ea, type: 3}
+  m_Script: {fileID: 11500000, guid: bc33fb6668f6d1748aa7d72e67c83cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shark: {fileID: 0}
+  rangler: {fileID: 0}
   player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
@@ -853,8 +883,8 @@ MonoBehaviour:
   attackRange: 0
   sightRange: 0
   health: 0
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 0
+  alrdyAttacked: 0
+  playerInAttackRange: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
