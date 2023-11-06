@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -254,6 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 978191058}
   - component: {fileID: 978191057}
+  - component: {fileID: 978191059}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -270,7 +271,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 978191056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2a88635729ac1e40ae6028b1012eff0, type: 3}
+  m_Script: {fileID: 11500000, guid: ff10850766338f942b739996af270164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FindDistance: 0
@@ -299,6 +300,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &978191059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978191056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7de74d1e5cc39b4b930c2c1c56ab4c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rows: 10
+  columns: 10
+  initialAliveProbability: 0.5
+  birthThreshold: 5
+  survivalThreshold: 4
+  iterationCount: 5
 --- !u!1 &1256679332
 GameObject:
   m_ObjectHideFlags: 0

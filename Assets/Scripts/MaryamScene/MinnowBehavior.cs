@@ -10,7 +10,8 @@ public class MinnowBehavior : MonoBehaviour
     public GridBehavior minnow;
 
     public GameObject Player;
-
+    
+    public LayerMask whatIsGround;
     public LayerMask whatIsPlayer;
 
     public float EnemyDistanceRun = 4.0f;
@@ -24,7 +25,6 @@ public class MinnowBehavior : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
-    public LayerMask whatIsGround;
 
     // Start is called before the first frame update
     void Start()

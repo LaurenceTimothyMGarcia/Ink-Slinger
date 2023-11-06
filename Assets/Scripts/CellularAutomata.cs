@@ -14,7 +14,7 @@ public class CellularAutomata : MonoBehaviour
 
     public bool[,] grid;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GenerateNewGrid();
     }

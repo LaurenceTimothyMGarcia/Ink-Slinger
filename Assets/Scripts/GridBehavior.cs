@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// [RequireComponent(typeof(CellularAutomata))]
 public class GridBehavior : MonoBehaviour
 {
     public bool FindDistance = false;
