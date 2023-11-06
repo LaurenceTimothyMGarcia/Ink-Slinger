@@ -6,12 +6,10 @@ public class NewBehaviourScript : MonoBehaviour
 {
     public float speed = .1f;
 
-    public Vector2 gridPosition;
     public Vector2 playerPosition;
 
     void Start()
     {
-        gridPosition = new Vector2(10, 10);
         playerPosition = new Vector2(10, 10);
     }
 

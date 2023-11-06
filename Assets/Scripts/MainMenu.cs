@@ -7,11 +7,13 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("LarryScene");
+        Debug.Log("Go to game");
+        SceneManager.LoadScene("ProtoTypeBuild");
     }
 
     public void QuitGame()
     {
+        Debug.Log("Quit Game");
         Application.Quit();
     }
 }
