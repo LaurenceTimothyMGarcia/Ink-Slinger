@@ -396,31 +396,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridGenerator
       objectReference: {fileID: 0}
-    - target: {fileID: 3446337801849098921, guid: 234d56674e866774ca166eb717668150,
-        type: 3}
-      propertyPath: rows
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3446337801849098921, guid: 234d56674e866774ca166eb717668150,
-        type: 3}
-      propertyPath: columns
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947406290033515873, guid: 234d56674e866774ca166eb717668150,
-        type: 3}
-      propertyPath: rows
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947406290033515873, guid: 234d56674e866774ca166eb717668150,
-        type: 3}
-      propertyPath: scale
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947406290033515873, guid: 234d56674e866774ca166eb717668150,
-        type: 3}
-      propertyPath: columns
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 6664475824629660377, guid: 234d56674e866774ca166eb717668150,
         type: 3}
       propertyPath: m_LocalPosition.x
