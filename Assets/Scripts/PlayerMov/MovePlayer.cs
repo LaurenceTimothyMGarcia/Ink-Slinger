@@ -7,6 +7,7 @@ public class NewBehaviourScript : MonoBehaviour
     public float speed = .1f;
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior; 
+    TurnBasedBehavior turnBasedBehavior;
     public int movementTime = 1; // time in seconds between each input read
 
     bool canMove = true;
@@ -22,6 +23,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
         gridItemBehavior = GetComponent<GridItemBehavior>();
+        turnBasedBehavior = GetComponent<TurnBasedBehavior>();
 
         GetStartPosition();
         StartCoroutine(movementCountdown());
@@ -47,7 +49,7 @@ public class NewBehaviourScript : MonoBehaviour
         float yDirection = Input.GetAxis("Vertical");
 
         if(canMove) {
-            if(xDirection != 0 || yDirection != 0) {
+            if((xDirection != 0 || yDirection != 0) && turnBasedBehavior.TurnStarted()) {
                 Direction selectedDirection = GetCardinalDirection(xDirection, yDirection);
                 Debug.Log(selectedDirection);
                 AttemptMovement(selectedDirection);
@@ -85,6 +87,7 @@ public class NewBehaviourScript : MonoBehaviour
         
         if(gridGenerator.IsPositionValid(targetPosition.x, targetPosition.y)) {
             gridItemBehavior.moveToPosition(targetPosition.x, targetPosition.y);
+            turnBasedBehavior.EndTurn();
         }
     }
 

@@ -9,6 +9,7 @@ public class RanglerBehavior : MonoBehaviour
     //public NavMeshAgent agent;
 
     GridItemBehavior gridItemBehavior;
+    TurnBasedBehavior turnBasedBehavior;
 
     public GameObject player;
 
@@ -39,22 +40,16 @@ public class RanglerBehavior : MonoBehaviour
         //agent = GetComponent<NavMeshAgent>(); 
 
         gridItemBehavior = GetComponent<GridItemBehavior>();
-        StartCoroutine(TestTimer());
+        turnBasedBehavior = GetComponent<TurnBasedBehavior>();
     }
 
     void Update() {
-        if(temp) {
+        if(turnBasedBehavior.TurnStarted()) {
             ChasePlayer();
-            temp = false;
+            turnBasedBehavior.EndTurn();
         }
     }
 
-    bool temp = false;
-    IEnumerator TestTimer() {
-        while(true){
-        yield return new WaitForSeconds(3);
-        temp = true;}
-    }
 
     // Update is called once per frame
     public void UpdateState()
