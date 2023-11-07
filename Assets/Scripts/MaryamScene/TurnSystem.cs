@@ -44,18 +44,6 @@ public class TurnSystem : MonoBehaviour
         //Damage the enemy
         //damageDealt needs to be changed to .Attack function from the player object, 
         //this is just a placeholder
-        if (enemyInAttackRange)
-        {
-            damageDealt = 1;
-            if (shark.playerInAttackRange)
-            {
-                shark.TakeDamage(damageDealt);
-            } else if (rangler.playerInAttackRange) {
-                rangler.TakeDamage(damageDealt);
-            } else if (minnow.playerInAttackRange) {
-                minnow.TakeDamage(damageDealt);
-            }
-        }
 
 
         yield return new WaitForSeconds(2f);
@@ -70,10 +58,6 @@ public class TurnSystem : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         yield return new WaitForSeconds(1f);
-
-        shark.UpdateState();
-        minnow.UpdateState();
-        rangler.UpdateState();
 
         //change this as well according to the player object
         //can call the game over screen here as well
