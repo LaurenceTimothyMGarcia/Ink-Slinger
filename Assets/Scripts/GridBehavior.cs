@@ -92,7 +92,8 @@ public class GridBehavior : MonoBehaviour
     {
         foreach (GameObject obj in gridArray)
         {
-            obj.GetComponent<GridStat>().visited = -1; //Everything on grid is -1
+            if(obj)
+                obj.GetComponent<GridStat>().visited = -1; //Everything on grid is -1
         }
 
         gridArray[startX, startY].GetComponent<GridStat>().visited = 0; //0 is starting point
@@ -151,7 +152,7 @@ public class GridBehavior : MonoBehaviour
         }
     }
 
-    void SetDistance()
+    public void SetDistance()
     {
         InitialSetUp();
         int x = startX;

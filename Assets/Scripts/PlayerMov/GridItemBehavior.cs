@@ -8,7 +8,7 @@ public class GridItemBehavior : MonoBehaviour
     public Vector2Int gridPosition = new Vector2Int(0,0);
     GridBehavior gridGenerator;
 
-    Queue<GameObject> path;
+    Stack<GameObject> path;
 
     void Awake() {
         gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
@@ -29,18 +29,21 @@ public class GridItemBehavior : MonoBehaviour
         gridGenerator.setStartY(gridPosition.y);
         gridGenerator.setEndX(x);
         gridGenerator.setEndY(y);
+        gridGenerator.SetDistance();
         gridGenerator.SetPath();
 
         // get a shallow clone of the gridgenerator's path
-        this.path = new Queue<GameObject>(gridGenerator.path);
+        this.path = new Stack<GameObject>(gridGenerator.path);
+        
     }
 
     // move on the current path however many steps
     public IEnumerator MoveOnPath(int steps) {
         if(path != null) {
+            if(path.Count > 0) path.Pop(); // removes the first step on the path, which is the position you are already at
             for(int i = 0; i < steps; i++) {
                 if(path.Count > 0) {
-                    GameObject target = path.Dequeue();
+                    GameObject target = path.Pop();
 
                     GridStat targetStats = target.GetComponent<GridStat>();
 
