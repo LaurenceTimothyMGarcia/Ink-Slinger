@@ -92,7 +92,8 @@ public class GridBehavior : MonoBehaviour
     {
         foreach (GameObject obj in gridArray)
         {
-            obj.GetComponent<GridStat>().visited = -1; //Everything on grid is -1
+            if(obj)
+                obj.GetComponent<GridStat>().visited = -1; //Everything on grid is -1
         }
 
         gridArray[startX, startY].GetComponent<GridStat>().visited = 0; //0 is starting point
@@ -151,7 +152,7 @@ public class GridBehavior : MonoBehaviour
         }
     }
 
-    void SetDistance()
+    public void SetDistance()
     {
         InitialSetUp();
         int x = startX;
@@ -193,6 +194,16 @@ public class GridBehavior : MonoBehaviour
 
     //changed the protection level of the below three functions
     //and added set functions
+
+    public void setStartX(int x)
+    {
+        startX = x;
+    }
+
+    public void setStartY(int y)
+    {
+        startY = y;
+    }
 
     public void setEndX(int x)
     {
@@ -265,5 +276,21 @@ public class GridBehavior : MonoBehaviour
         }
 
         return list[indexNumber];
+    }
+
+    public bool IsPositionValid(int x, int y) {
+        if(gridArray[x,y]) {
+            return true;
+        }
+        return false;
+    }
+
+    public Vector3 GetWorldPosition(int x, int y) {
+        if(gridArray[x,y]) {
+            return gridArray[x,y].transform.position;
+        }
+        else {
+            return Vector3.zero;
+        }
     }
 }
