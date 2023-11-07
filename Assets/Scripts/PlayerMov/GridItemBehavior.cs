@@ -10,7 +10,7 @@ public class GridItemBehavior : MonoBehaviour
 
     Queue<GameObject> path;
 
-    void Start() {
+    void Awake() {
         gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
     }
 
@@ -21,6 +21,9 @@ public class GridItemBehavior : MonoBehaviour
         transform.position += new Vector3(0, 2, 0); // temp line to position objects above grid
     }
 
+    public void GetPathTo(Vector2Int position) {
+        GetPathTo(position.x, position.y);
+    }
     public void GetPathTo(int x, int y) {
         gridGenerator.setStartX(gridPosition.x);
         gridGenerator.setStartY(gridPosition.y);
