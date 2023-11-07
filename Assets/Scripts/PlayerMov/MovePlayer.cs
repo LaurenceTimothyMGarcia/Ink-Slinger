@@ -5,9 +5,8 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
     public float speed = .1f;
-
-    public Vector2Int gridPosition;
-    public GridBehavior gridGenerator;
+    GridBehavior gridGenerator;
+    GridItemBehavior gridItemBehavior; 
     public int movementTime = 1; // time in seconds between each input read
 
     bool canMove = true;
@@ -21,28 +20,25 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Start()
     {
-        GetStartPosition();
-        Debug.Log(gridPosition);
-        transform.position = gridGenerator.GetWorldPosition(gridPosition.x, gridPosition.y);
-        transform.position += new Vector3(0, 2, 0); // temp line...
+        gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
+        gridItemBehavior = GetComponent<GridItemBehavior>();
 
+        GetStartPosition();
         StartCoroutine(movementCountdown());
     }
 
+    // temporary function that just grabs the first valid start position it finds and uses that
     void GetStartPosition() {
         int startX = 0;
         int startY = 0;
         for(startX = 0; startX < gridGenerator.rows; startX++) {
             for (startY = 0; startY < gridGenerator.columns; startY++) {
                 if(gridGenerator.IsPositionValid(startX, startY)) {
-                    gridPosition = new Vector2Int(startX,startY);
+                    gridItemBehavior.moveToPosition(startX, startY);
                     return;
                 }
             }
         }
-
-        
-        gridPosition = new Vector2Int(startX, startY);
     }
 
     void Update()
@@ -78,7 +74,7 @@ public class NewBehaviourScript : MonoBehaviour
     }
 
     void AttemptMovement(Direction direction) {
-        Vector2Int targetPosition = gridPosition;
+        Vector2Int targetPosition = gridItemBehavior.gridPosition;
         // select target grid position depending on inputted direction
         switch(direction) {
             case Direction.LEFT: {targetPosition.x -= 1; break;}
@@ -88,10 +84,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
         
         if(gridGenerator.IsPositionValid(targetPosition.x, targetPosition.y)) {
-            // successful movement code here
-            gridPosition = targetPosition;
-            transform.position = gridGenerator.GetWorldPosition(gridPosition.x, gridPosition.y);
-            transform.position += new Vector3(0, 2, 0); // temp line...
+            gridItemBehavior.moveToPosition(targetPosition.x, targetPosition.y);
         }
     }
 

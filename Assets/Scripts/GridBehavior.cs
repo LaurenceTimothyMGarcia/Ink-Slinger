@@ -194,6 +194,16 @@ public class GridBehavior : MonoBehaviour
     //changed the protection level of the below three functions
     //and added set functions
 
+    public void setStartX(int x)
+    {
+        startX = x;
+    }
+
+    public void setStartY(int y)
+    {
+        startY = y;
+    }
+
     public void setEndX(int x)
     {
         endX = x;
