@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     GridItemBehavior gridItemBehavior;
-    GameObject player;
+    public GameObject player;
 
     //temporary
     GameObject healthBar;
