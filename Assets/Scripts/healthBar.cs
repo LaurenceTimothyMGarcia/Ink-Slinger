@@ -33,9 +33,11 @@ public class healthBar : MonoBehaviour
             easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, health, lerpSpeed);
         }
 
-        void takeDamage(float damage)
+        
+    }
+
+    public void takeDamage(float damage)
         {
             health -= damage;
         }
-    }
 }

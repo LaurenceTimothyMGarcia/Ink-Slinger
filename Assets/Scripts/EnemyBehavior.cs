@@ -7,6 +7,9 @@ public class EnemyBehavior : MonoBehaviour
     GridItemBehavior gridItemBehavior;
     GameObject player;
 
+    //temporary
+    GameObject healthBar;
+
     public int MaxHealth = 3;
     int health;
 
@@ -20,6 +23,9 @@ public class EnemyBehavior : MonoBehaviour
         //agent = GetComponent<NavMeshAgent>(); 
 
         gridItemBehavior = GetComponent<GridItemBehavior>();
+
+        // temp
+        healthBar = GameObject.Find("Health Bar");
     }
 
     // Start is called before the first frame update
@@ -36,8 +42,11 @@ public class EnemyBehavior : MonoBehaviour
 
     public bool PlayerInRange(int range) {
         Vector2Int distanceVector = gridItemBehavior.gridPosition - player.GetComponent<GridItemBehavior>().gridPosition;
-        Debug.Log(distanceVector);
         return (Mathf.Abs(distanceVector.x) + Mathf.Abs(distanceVector.y)) <= range;
+    }
+
+    public void HurtPlayer(int amount) {
+        healthBar.GetComponent<healthBar>().takeDamage(amount);
     }
 
     public void DestroyEnemy()

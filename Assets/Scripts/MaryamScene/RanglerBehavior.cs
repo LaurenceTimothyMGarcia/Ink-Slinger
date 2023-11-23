@@ -8,6 +8,10 @@ public class RanglerBehavior : MonoBehaviour
     TurnBasedBehavior turnBasedBehavior;
     EnemyBehavior enemyBehavior;
 
+    public int DamageAmount = 10;
+    public int AttackRange = 1;
+    public int MovementSpeed = 1;
+
     private void Awake()
     {
         turnBasedBehavior = GetComponent<TurnBasedBehavior>();
@@ -16,11 +20,12 @@ public class RanglerBehavior : MonoBehaviour
 
     void Update() {
         if(turnBasedBehavior.TurnStarted()) {
-            if(enemyBehavior.PlayerInRange(1)) {
+            if(enemyBehavior.PlayerInRange(AttackRange)) {
                 // attack player
+                enemyBehavior.HurtPlayer(DamageAmount);
             }
             else {
-                enemyBehavior.ChasePlayer(1);
+                enemyBehavior.ChasePlayer(MovementSpeed);
             }
             turnBasedBehavior.EndTurn();
         }
