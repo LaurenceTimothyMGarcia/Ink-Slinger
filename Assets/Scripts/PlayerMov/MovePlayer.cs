@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public float speed = .1f;
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior; 
     TurnBasedBehavior turnBasedBehavior;
-    public int movementTime = 1; // time in seconds between each input read
+    public float movementTime = .3f; // time in seconds between each input read
 
     bool canMove = true;
 
@@ -51,8 +50,12 @@ public class NewBehaviourScript : MonoBehaviour
         if(canMove) {
             if((xDirection != 0 || yDirection != 0) && turnBasedBehavior.TurnStarted()) {
                 Direction selectedDirection = GetCardinalDirection(xDirection, yDirection);
-                Debug.Log(selectedDirection);
                 AttemptMovement(selectedDirection);
+            }
+            else if(Input.GetButton("Fire1") && turnBasedBehavior.TurnStarted()) {
+                // temporary; skip your turn
+                Debug.Log("turn skipped");
+                turnBasedBehavior.EndTurn();
             }
             canMove = false;
         }
