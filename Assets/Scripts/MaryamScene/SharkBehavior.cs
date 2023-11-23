@@ -11,8 +11,8 @@ public class SharkBehavior : MonoBehaviour
 
     public int AttackRange = 1;
     public int DamageAmount = 10;
-    public int PatrolMovementSpeed = 1;
-    public int AggroMovementSpeed = 2;
+    public int MovementSpeed = 1;
+    public int AggroActions = 2;
     public int AggroRange = 6;
 
     bool aggro = false;
@@ -31,7 +31,7 @@ public class SharkBehavior : MonoBehaviour
     void Update() {
         if(turnBasedBehavior.TurnStarted()) {
             if(aggro) {
-                AggroBehavior();
+                StartCoroutine(AggroBehavior());
             }
             else {
                 PatrolBehavior();
@@ -40,17 +40,20 @@ public class SharkBehavior : MonoBehaviour
         }
     }
 
-    void AggroBehavior() {
-        if(enemyBehavior.PlayerInRange(AttackRange)) {
+    IEnumerator AggroBehavior() {
+        for(int i = 0; i < AggroActions; i++){
+            if(enemyBehavior.PlayerInRange(AttackRange)) {
                 enemyBehavior.HurtPlayer(DamageAmount);
             }
             else {
-                enemyBehavior.ChasePlayer(AggroMovementSpeed);
+                enemyBehavior.ChasePlayer(MovementSpeed);
             }
+            
+            yield return new WaitForSeconds(.2f);
+        }
     }
 
     void PatrolBehavior() {
-        Debug.Log("patrol behavior function called");
         // patrol movement
         PatrolMovement();
         // check if player is in range
@@ -60,16 +63,13 @@ public class SharkBehavior : MonoBehaviour
     }
 
     void PatrolMovement() {
-        Debug.Log("patrol movement function called");
         // really sorry for this line of code
         // the ternary operator is here to change which direction is checked
         // this code determines if the cell in the direction the shark is traveling is valid
         // if it isn't, the shark turns around
         if(!GameObject.Find("GridGenerator").GetComponent<GridBehavior>().IsPositionValid(gridItemBehavior.gridPosition.x + (movingRight ? 1 : -1)  , gridItemBehavior.gridPosition.y)) {
-            Debug.Log("changed directio");
             movingRight = !movingRight;
         }
-        Debug.Log("direction of movement: " + (movingRight ? 1 : -1));
 
         gridItemBehavior.moveToPosition(gridItemBehavior.gridPosition.x + (movingRight ? 1 : -1), gridItemBehavior.gridPosition.y);
     }
