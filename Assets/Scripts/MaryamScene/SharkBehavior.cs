@@ -16,6 +16,9 @@ public class SharkBehavior : MonoBehaviour
     public int AggroRange = 6;
 
     bool aggro = false;
+    
+    // temp movement stuff
+    bool movingRight = true;
 
     void Awake() {
         turnBasedBehavior = GetComponent<TurnBasedBehavior>();
@@ -47,11 +50,27 @@ public class SharkBehavior : MonoBehaviour
     }
 
     void PatrolBehavior() {
+        Debug.Log("patrol behavior function called");
         // patrol movement
-
+        PatrolMovement();
         // check if player is in range
         if(enemyBehavior.PlayerInRange(AggroRange)) {
             aggro = true;
         }
+    }
+
+    void PatrolMovement() {
+        Debug.Log("patrol movement function called");
+        // really sorry for this line of code
+        // the ternary operator is here to change which direction is checked
+        // this code determines if the cell in the direction the shark is traveling is valid
+        // if it isn't, the shark turns around
+        if(!GameObject.Find("GridGenerator").GetComponent<GridBehavior>().IsPositionValid(gridItemBehavior.gridPosition.x + (movingRight ? 1 : -1)  , gridItemBehavior.gridPosition.y)) {
+            Debug.Log("changed directio");
+            movingRight = !movingRight;
+        }
+        Debug.Log("direction of movement: " + (movingRight ? 1 : -1));
+
+        gridItemBehavior.moveToPosition(gridItemBehavior.gridPosition.x + (movingRight ? 1 : -1), gridItemBehavior.gridPosition.y);
     }
 }
