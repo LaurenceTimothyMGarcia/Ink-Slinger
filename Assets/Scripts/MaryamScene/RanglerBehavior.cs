@@ -16,7 +16,12 @@ public class RanglerBehavior : MonoBehaviour
 
     void Update() {
         if(turnBasedBehavior.TurnStarted()) {
-            enemyBehavior.ChasePlayer(1);
+            if(enemyBehavior.PlayerInRange(1)) {
+                // attack player
+            }
+            else {
+                enemyBehavior.ChasePlayer(1);
+            }
             turnBasedBehavior.EndTurn();
         }
     }

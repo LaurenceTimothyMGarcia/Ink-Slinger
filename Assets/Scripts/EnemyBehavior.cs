@@ -34,6 +34,12 @@ public class EnemyBehavior : MonoBehaviour
         StartCoroutine(gridItemBehavior.MoveOnPath(TileSpeed));
     }
 
+    public bool PlayerInRange(int range) {
+        Vector2Int distanceVector = gridItemBehavior.gridPosition - player.GetComponent<GridItemBehavior>().gridPosition;
+        Debug.Log(distanceVector);
+        return (Mathf.Abs(distanceVector.x) + Mathf.Abs(distanceVector.y)) <= range;
+    }
+
     public void DestroyEnemy()
     {
         Destroy(gameObject);
