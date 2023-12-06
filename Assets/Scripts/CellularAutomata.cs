@@ -111,8 +111,6 @@ public class CellularAutomata : MonoBehaviour
             }
         }
 
-        Debug.Log("number of blobs: " + numberOfBlobs);
-
         // identify which blob is the largest
         int[] blobSizes = new int[numberOfBlobs];
         // iterate through the array again, incrementing the size of each
