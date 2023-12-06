@@ -74,7 +74,7 @@ public class GridBehavior : MonoBehaviour
         {
             for(int j = 0; j < rows; j++)
             {
-                if(!cellGrid[i,j]) {
+                if(cellGrid[i,j]) {
                     GameObject obj = Instantiate(
                                         gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 
                                         leftBottomLocation.y, leftBottomLocation.z + scale * j), Quaternion.identity);
@@ -279,6 +279,11 @@ public class GridBehavior : MonoBehaviour
     }
 
     public bool IsPositionValid(int x, int y) {
+        // this if statement checks if the position is in bounds for the array
+        // just because of a couple annoying errors spamming the console
+        if(x < 0 || y < 0 || x >= gridArray.Length || y >= gridArray.GetLength(0)) {
+            return false;
+        }
         if(gridArray[x,y]) {
             return true;
         }
