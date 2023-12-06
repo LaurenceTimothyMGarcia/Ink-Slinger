@@ -121,6 +121,7 @@ public class CellularAutomata : MonoBehaviour
             }
         }
 
+        // is there really no good way to find index of the max value in an array...
         int largestBlob = 0;
         int currentLargest = -1;
         for(int i = 0; i < numberOfBlobs; i++) {
