@@ -17,7 +17,6 @@ public class CellularAutomata : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        GenerateNewGrid();
     }
 
     void GenerateNewGrid() {
@@ -167,8 +166,11 @@ public class CellularAutomata : MonoBehaviour
         return false;
     }
 
+    // this public function actually gives you a usable piece of terrain
     // the final grid should just be trues and falses because why the hell not. i dont feel like rewriting my code in the other scripts
     public bool[,] GetGrid() {
+        GenerateNewGrid();
+
         bool[,] outGrid = new bool[rows,columns];
 
         for(int i = 0; i < rows; i++) {
@@ -176,7 +178,24 @@ public class CellularAutomata : MonoBehaviour
                 if(grid[i,j] > 0) outGrid[i,j] = true;
             }
         }
+
         return outGrid;
+    }
+
+    bool rowEmpty(int y) {
+        bool empty = true;
+        for(int i = 0; i < columns; i++) {
+            if(grid[i,y] == 1) empty = false;
+        }
+        return empty;
+    }
+
+    bool colEmpty(int x) {
+        bool empty = true;
+        for(int i = 0; i < rows; i++) {
+            if(grid[x,i] == 1) empty = false;
+        }
+        return empty;
     }
 
     void printGrid() {

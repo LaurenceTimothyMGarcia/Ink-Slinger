@@ -274,6 +274,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 3446337801849098921, guid: 234d56674e866774ca166eb717668150,
+        type: 3}
+      propertyPath: rows
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446337801849098921, guid: 234d56674e866774ca166eb717668150,
+        type: 3}
+      propertyPath: columns
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947406290033515873, guid: 234d56674e866774ca166eb717668150,
+        type: 3}
+      propertyPath: rows
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947406290033515873, guid: 234d56674e866774ca166eb717668150,
+        type: 3}
+      propertyPath: columns
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6664475824629660377, guid: 234d56674e866774ca166eb717668150,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -327,8 +347,18 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3126776938708775387, guid: 234d56674e866774ca166eb717668150,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1734338640}
   m_SourcePrefab: {fileID: 100100000, guid: 234d56674e866774ca166eb717668150, type: 3}
+--- !u!1 &728300252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3126776938708775387, guid: 234d56674e866774ca166eb717668150,
+    type: 3}
+  m_PrefabInstance: {fileID: 728300251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &765577448
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,12 +942,27 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 728300251}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 728300252}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff10850766338f942b739996af270164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1734338640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728300252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4992a55ac1724734eacad216e85bd96a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rows: 100
+  columns: 100
+  roomSize: 16
 --- !u!1 &1796315909
 GameObject:
   m_ObjectHideFlags: 0
