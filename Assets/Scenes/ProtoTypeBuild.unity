@@ -287,12 +287,12 @@ PrefabInstance:
     - target: {fileID: 5947406290033515873, guid: 234d56674e866774ca166eb717668150,
         type: 3}
       propertyPath: rows
-      value: 100
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 5947406290033515873, guid: 234d56674e866774ca166eb717668150,
         type: 3}
       propertyPath: columns
-      value: 100
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 6664475824629660377, guid: 234d56674e866774ca166eb717668150,
         type: 3}
@@ -960,9 +960,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4992a55ac1724734eacad216e85bd96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 100
-  columns: 100
+  rows: 64
+  columns: 64
   roomSize: 16
+  numberOfRooms: 6
 --- !u!1 &1796315909
 GameObject:
   m_ObjectHideFlags: 0
