@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6664475824629660377}
   - component: {fileID: 5947406290033515873}
   - component: {fileID: 3446337801849098921}
+  - component: {fileID: 34130698093994439}
   m_Layer: 6
   m_Name: GridGenerator
   m_TagString: Untagged
@@ -46,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FindDistance: 0
-  rows: 30
-  columns: 30
+  rows: 64
+  columns: 64
   scale: 2
   gridPrefab: {fileID: 1522326360127920064, guid: 4f1bb396d77f1294f9b1e09411c56f2e,
     type: 3}
@@ -69,9 +70,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7de74d1e5cc39b4b930c2c1c56ab4c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 30
-  columns: 30
+  rows: 16
+  columns: 16
   initialAliveProbability: 0.5
   birthThreshold: 5
   survivalThreshold: 4
   iterationCount: 5
+--- !u!114 &34130698093994439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3126776938708775387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4992a55ac1724734eacad216e85bd96a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rows: 64
+  columns: 64
+  roomSize: 16
+  numberOfRooms: 6
