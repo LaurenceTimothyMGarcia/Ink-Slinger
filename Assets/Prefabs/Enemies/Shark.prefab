@@ -94,6 +94,9 @@ GameObject:
   - component: {fileID: 695593789469165945}
   - component: {fileID: 4746829716495070244}
   - component: {fileID: 330299552984250523}
+  - component: {fileID: -3499335117781601720}
+  - component: {fileID: 5825224522999668866}
+  - component: {fileID: 3784950971402008581}
   m_Layer: 8
   m_Name: Shark
   m_TagString: Untagged
@@ -150,20 +153,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae72b17f39d3a243a8de79c096986ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shark: {fileID: 0}
+  AttackRange: 1
+  DamageAmount: 10
+  MovementSpeed: 1
+  AggroActions: 2
+  AggroRange: 6
+--- !u!114 &-3499335117781601720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8453733459633591631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8de6a9f3ae514745b9c82c0cfaa9d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridPosition: {x: 0, y: 0}
+--- !u!114 &5825224522999668866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8453733459633591631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c05e44d0e8c77a41b1f83fa88a8af2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3784950971402008581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8453733459633591631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59967684b0784c43824cb9e3a41438f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   player: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 128
-  timeBtwAttacks: 1
-  attackRange: 5
-  sightRange: 5
-  health: 10
-  alrdyAttacked: 0
-  playerInAttackRange: 0
-  playerInSightRange: 0
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 0
+  MaxHealth: 3
