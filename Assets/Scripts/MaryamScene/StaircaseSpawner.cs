@@ -8,6 +8,9 @@ public class StaircaseSpawner : MonoBehaviour
     public GameObject stairCase;
     public Collider collider;
     GridBehavior gridGenerator;
+    public bool goLevel1;
+    public bool goLevel2;
+    public bool goLevel3;
 
     private void Start()
     {
@@ -42,6 +45,21 @@ public class StaircaseSpawner : MonoBehaviour
 
     public void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene("ProtoTypeBuild");
+        if (goLevel1)
+        {
+            SceneManager.LoadScene("Level1");
+        }
+
+        if (goLevel2)
+        {
+            SceneManager.LoadScene("Level2");
+        }
+
+        if (goLevel3)
+        {
+            SceneManager.LoadScene("Level3");
+        }
     }
 }
