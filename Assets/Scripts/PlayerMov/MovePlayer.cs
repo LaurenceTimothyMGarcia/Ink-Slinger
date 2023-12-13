@@ -100,8 +100,8 @@ public class NewBehaviourScript : MonoBehaviour
         {
             gridItemBehavior.moveToPosition(targetPosition.x, targetPosition.y);
             turnBasedBehavior.EndTurn();
-            StartCoroutine(movementCountdown());
         }
+        StartCoroutine(movementCountdown());
     }
 
     // this is a really mcgwyver solution to get user input from axes

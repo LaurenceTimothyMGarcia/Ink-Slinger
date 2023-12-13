@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
     {
         gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
 
-        //SpawnEnemyRandomly(EnemyType.SHARK);
+        SpawnEnemyRandomly(EnemyType.SHARK);
     }
 
     void SpawnEnemyRandomly(EnemyType type) {
