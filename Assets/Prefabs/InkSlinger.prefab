@@ -5241,6 +5241,7 @@ GameObject:
   - component: {fileID: 8890621859956511560}
   - component: {fileID: 1971815324110767826}
   - component: {fileID: 7058419504819505601}
+  - component: {fileID: 6074824581503624597}
   m_Layer: 0
   m_Name: InkSlinger
   m_TagString: Untagged
@@ -5313,6 +5314,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementTime: 0.2
+--- !u!114 &6074824581503624597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4995302015233261417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c05e44d0e8c77a41b1f83fa88a8af2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5064212172836325190
 GameObject:
   m_ObjectHideFlags: 0
