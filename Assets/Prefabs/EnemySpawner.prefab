@@ -46,9 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - type: 0
-    prefab: {fileID: 798303675277897718, guid: b095698aa63d8a24396a7ef74b92576b, type: 3}
+    prefab: {fileID: 6527226462272317230, guid: 5577029e35ad3db42b3f0635562a7175,
+      type: 3}
   - type: 1
-    prefab: {fileID: 771212880669513652, guid: 18fdd0d2289f40e4bbff13b8b7d7712a, type: 3}
+    prefab: {fileID: 3241378978257053839, guid: af881fe8e672f264fa9317159ca569aa,
+      type: 3}
   - type: 2
-    prefab: {fileID: 8453733459633591631, guid: ca480b7a02feaeb46877522ee1fdff55,
+    prefab: {fileID: 6142693317537251658, guid: abfa0569bafaaba4e8444c45161f30f3,
       type: 3}

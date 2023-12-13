@@ -49,7 +49,7 @@ MonoBehaviour:
   FindDistance: 0
   rows: 64
   columns: 64
-  scale: 2
+  scale: 4
   gridPrefab: {fileID: 1522326360127920064, guid: 4f1bb396d77f1294f9b1e09411c56f2e,
     type: 3}
   leftBottomLocation: {x: 0, y: 0, z: 0}
