@@ -14,6 +14,7 @@ public class StaircaseSpawner : MonoBehaviour
 
     private void Start()
     {
+        gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
         SpawnStairs();
     }
 
@@ -39,8 +40,8 @@ public class StaircaseSpawner : MonoBehaviour
             y = Random.Range(0, gridGenerator.gridArray.GetLength(1) - 1);
         }
 
-        stairCase = Instantiate(stairCase, new Vector3(0, 0, 0), Quaternion.identity);
-        stairCase.GetComponent<GridItemBehavior>().moveToPosition(x, y);
+        stairCase = (GameObject) Instantiate(stairCase, new Vector3(x, 2, y), Quaternion.identity);
+        //stairCase.GetComponent<GridItemBehavior>().moveToPosition(x, y);
     }
 
     public void NextLevel()
