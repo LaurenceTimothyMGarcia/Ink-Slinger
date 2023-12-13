@@ -19,7 +19,7 @@ public class EnemyBehavior : MonoBehaviour
     private void Awake()
     {
         //Whatever the player's name is, replace the string in the delimiter
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         //agent = GetComponent<NavMeshAgent>(); 
 
         gridItemBehavior = GetComponent<GridItemBehavior>();
