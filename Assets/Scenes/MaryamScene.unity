@@ -123,6 +123,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1161358912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1161358914}
+  - component: {fileID: 1161358913}
+  m_Layer: 0
+  m_Name: Staircase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1161358913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161358912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee10e9c3f3964d34a82ce73298c52892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stairCase: {fileID: 2104580524511954402, guid: d9ddc1918a014af45a407ebe84cbe762,
+    type: 3}
+  collider: {fileID: 5919075437433915213, guid: 1f4cb3ec9cef8f64a9916a3bb89f1305,
+    type: 3}
+--- !u!4 &1161358914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161358912}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.353197, z: 8.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1350056749
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +339,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inkPuddle: {fileID: 6146187731272497082, guid: 2aa329ec9d3ce9943872c0eb61a675c4,
     type: 3}
-  collider: {fileID: 1852463412}
+  collider: {fileID: 5919075437433915213, guid: 1f4cb3ec9cef8f64a9916a3bb89f1305,
+    type: 3}
 --- !u!4 &1620766735
 Transform:
   m_ObjectHideFlags: 0
@@ -531,12 +580,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!136 &1852463412 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 6186927388784124438, guid: 18fdd0d2289f40e4bbff13b8b7d7712a,
-    type: 3}
-  m_PrefabInstance: {fileID: 6825054729687371706}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3811239136754544988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -752,3 +795,4 @@ SceneRoots:
   - {fileID: 7217102307444905718}
   - {fileID: 6825054729687371706}
   - {fileID: 1620766735}
+  - {fileID: 1161358914}

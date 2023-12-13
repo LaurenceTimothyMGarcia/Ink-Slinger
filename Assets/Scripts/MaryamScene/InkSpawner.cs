@@ -7,6 +7,8 @@ public class InkSpawner : MonoBehaviour
 {
     public GameObject inkPuddle;
     public Collider collider;
+    
+    //debug tools commented out
 
     private void Update()
     {
@@ -15,7 +17,6 @@ public class InkSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        //change if necessary to whatever the Player object is called
         if (collider.gameObject.name == "Player")
         {
             InkAbsorbed();
