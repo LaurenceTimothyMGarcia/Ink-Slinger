@@ -2030,10 +2030,10 @@ MonoBehaviour:
   Player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   EnemyDistanceRun: 4
   health: 0
   attackRange: 0
