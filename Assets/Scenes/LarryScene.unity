@@ -123,12 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &89046034 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1969329511218859945, guid: 20d6c83476bf3c4468ceb8ecc7dfb20b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2020105658}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &690716284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -277,6 +271,7 @@ GameObject:
   - component: {fileID: 1469639026}
   - component: {fileID: 1469639025}
   - component: {fileID: 1469639028}
+  - component: {fileID: 1469639029}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -327,7 +322,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -351,13 +346,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469639024}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.23911765, y: -0.3696438, z: 0.09904577, w: 0.89239913}
+  m_LocalRotation: {x: 0.25000006, y: -0.24999997, z: 0.066987306, w: 0.9330127}
   m_LocalPosition: {x: 11.12, y: 9.08, z: -11.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 89046034}
-  m_LocalEulerAnglesHint: {x: 30, y: -45, z: 0}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: -30, z: 0}
 --- !u!114 &1469639028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +397,20 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1469639029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469639024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9039493552bb9a145813ee7704de00e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothSpeed: 0.125
+  offset: {x: 30, y: 35, z: -50}
 --- !u!1001 &1762318778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -535,11 +544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1969329511218859945, guid: 20d6c83476bf3c4468ceb8ecc7dfb20b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1469639027}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20d6c83476bf3c4468ceb8ecc7dfb20b, type: 3}
 --- !u!1 &2107996569
@@ -664,6 +669,7 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1469639027}
   - {fileID: 2107996571}
   - {fileID: 694809828}
   - {fileID: 1762318778}

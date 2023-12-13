@@ -6,6 +6,9 @@ public class CameraFollow : MonoBehaviour
 {
     Transform player;
 
+    public float smoothSpeed = 0.125f;
+    public Vector3 offset;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -13,10 +16,13 @@ public class CameraFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        Vector3 desiredPosition = player.position + offset;
+        Vector3 smoothPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
 
-        
+        transform.position = smoothPosition;
+
+        // transform.LookAt(player);
     }
 }
