@@ -3602,7 +3602,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7445382465965552621}
+  - component: {fileID: 8466789946404997355}
   - component: {fileID: 6919647210113955874}
+  - component: {fileID: 6786059043177515439}
+  - component: {fileID: 1206302031707398498}
+  - component: {fileID: 4769377668012847968}
   m_Layer: 0
   m_Name: Shark
   m_TagString: Untagged
@@ -3626,6 +3630,27 @@ Transform:
   - {fileID: 5158906048822014222}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8466789946404997355
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6142693317537251658}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6919647210113955874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3643,6 +3668,45 @@ MonoBehaviour:
   MovementSpeed: 1
   AggroActions: 2
   AggroRange: 6
+--- !u!114 &6786059043177515439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6142693317537251658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8de6a9f3ae514745b9c82c0cfaa9d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridPosition: {x: 0, y: 0}
+--- !u!114 &1206302031707398498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6142693317537251658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c05e44d0e8c77a41b1f83fa88a8af2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4769377668012847968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6142693317537251658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59967684b0784c43824cb9e3a41438f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  MaxHealth: 3
 --- !u!1 &6145274216719647718
 GameObject:
   m_ObjectHideFlags: 0

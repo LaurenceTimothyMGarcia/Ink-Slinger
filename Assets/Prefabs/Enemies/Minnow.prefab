@@ -1965,7 +1965,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1518764813927229575}
+  - component: {fileID: 4106290317921080389}
   - component: {fileID: 6844459678801462992}
+  - component: {fileID: 279744411831170080}
+  - component: {fileID: 3203745691996711308}
+  - component: {fileID: 2277247347535849026}
   m_Layer: 0
   m_Name: Minnow
   m_TagString: Untagged
@@ -1989,6 +1993,27 @@ Transform:
   - {fileID: 1554514533899071071}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4106290317921080389
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241378978257053839}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6844459678801462992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2015,6 +2040,45 @@ MonoBehaviour:
   playerInAttackRange: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 0
+--- !u!114 &279744411831170080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241378978257053839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8de6a9f3ae514745b9c82c0cfaa9d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridPosition: {x: 0, y: 0}
+--- !u!114 &3203745691996711308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241378978257053839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c05e44d0e8c77a41b1f83fa88a8af2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2277247347535849026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241378978257053839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59967684b0784c43824cb9e3a41438f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  MaxHealth: 3
 --- !u!1 &3263548196153351671
 GameObject:
   m_ObjectHideFlags: 0
