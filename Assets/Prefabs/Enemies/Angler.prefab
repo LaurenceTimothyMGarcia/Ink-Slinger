@@ -3591,6 +3591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8de6a9f3ae514745b9c82c0cfaa9d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundLvl: 2
   gridPosition: {x: 0, y: 0}
 --- !u!114 &9055286916375542892
 MonoBehaviour:

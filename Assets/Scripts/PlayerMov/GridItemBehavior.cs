@@ -5,6 +5,7 @@ using UnityEngine;
 // generic script for items that are on the grid
 public class GridItemBehavior : MonoBehaviour
 {
+    public float groundLvl;
     public Vector2Int gridPosition = new Vector2Int(0,0);
     GridBehavior gridGenerator;
 
@@ -18,7 +19,7 @@ public class GridItemBehavior : MonoBehaviour
         gridPosition.x = x;
         gridPosition.y = y;
         transform.position = gridGenerator.GetWorldPosition(gridPosition.x, gridPosition.y);
-        transform.position += new Vector3(0, 2, 0); // temp line to position objects above grid
+        transform.position += new Vector3(0, groundLvl, 0); // temp line to position objects above grid
     }
 
     public void GetPathTo(Vector2Int position) {

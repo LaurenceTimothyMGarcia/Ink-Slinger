@@ -90,10 +90,23 @@ public class MovePlayer : MonoBehaviour
         // select target grid position depending on inputted direction
         switch (direction)
         {
-            case Direction.LEFT: { targetPosition.x -= 1; break; }
-            case Direction.RIGHT: { targetPosition.x += 1; break; }
-            case Direction.UP: { targetPosition.y += 1; break; }
-            case Direction.DOWN: { targetPosition.y -= 1; break; }
+            case Direction.LEFT: { 
+                targetPosition.x -= 1; 
+                // this.gameObject.transform.LookAt()
+                break; 
+            }
+            case Direction.RIGHT: { 
+                targetPosition.x += 1; 
+                break; 
+            }
+            case Direction.UP: { 
+                targetPosition.y += 1; 
+                break; 
+            }
+            case Direction.DOWN: { 
+                targetPosition.y -= 1; 
+                break; 
+            }
         }
 
         if (gridGenerator.IsPositionValid(targetPosition.x, targetPosition.y))
