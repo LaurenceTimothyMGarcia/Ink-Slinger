@@ -23,8 +23,13 @@ public class RanglerBehavior : MonoBehaviour
     void Update() {
         if(turnBasedBehavior.TurnStarted()) {
             if(enemyBehavior.PlayerInRange(AttackRange)) {
+
+                animator.SetTrigger("Attack");
+
                 // attack player
                 enemyBehavior.HurtPlayer(DamageAmount);
+
+                animator.SetTrigger("Attack");
             }
             else {
                 enemyBehavior.ChasePlayer(MovementSpeed);
