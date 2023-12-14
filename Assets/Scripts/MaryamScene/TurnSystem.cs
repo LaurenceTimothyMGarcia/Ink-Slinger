@@ -14,7 +14,12 @@ public class TurnSystem : MonoBehaviour
     void StartNextTurn() {
         queue.Enqueue(currentAgent);
         currentAgent = queue.Dequeue();
-        currentAgent.StartTurn();
+        if(currentAgent != null) {
+            currentAgent.StartTurn();
+        }
+        else {
+            StartNextTurn();
+        }
     }
 
     // call this function to tell the turn system that your turn is done
