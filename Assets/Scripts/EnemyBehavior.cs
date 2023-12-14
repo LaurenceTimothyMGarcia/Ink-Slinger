@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
+    public Animator animator;
+
     GridItemBehavior gridItemBehavior;
     public GameObject player;
     InkSpawner inkSpawner;
@@ -35,6 +37,27 @@ public class EnemyBehavior : MonoBehaviour
         health = MaxHealth;
     }
 
+    void Update()
+    {
+        if (health <= 0) 
+        {
+            DestroyEnemy(this.gameObject.name);
+        }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (health > 0)
+        {
+            animator.SetTrigger("Hurt");
+            health -= amount;
+        }
+        else 
+        {
+            health = 0;
+        }
+    }
+
     public void ChasePlayer(int TileSpeed)
     {
         gridItemBehavior.GetPathTo(player.GetComponent<GridItemBehavior>().gridPosition);
@@ -49,7 +72,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public void HurtPlayer(int amount)
     {
-        healthBar.GetComponent<healthBar>().takeDamage(amount);
+        player.GetComponent<healthBar>().takeDamage(amount);
     }
 
     public void DestroyEnemy(string enemyName)

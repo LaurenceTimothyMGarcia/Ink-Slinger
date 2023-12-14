@@ -1071,6 +1071,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d377b907f2d90f4f8a3c05010e647a3, type: 3}
+--- !u!114 &1864033114 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4308149179429822291, guid: d6912dae722641246bb3d700c7a55d76,
+    type: 3}
+  m_PrefabInstance: {fileID: 1404724103}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2020105658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1134,36 +1146,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: InkSlinger
       objectReference: {fileID: 0}
+    - target: {fileID: 7682655039506310515, guid: 20d6c83476bf3c4468ceb8ecc7dfb20b,
+        type: 3}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 1404724105}
+    - target: {fileID: 7682655039506310515, guid: 20d6c83476bf3c4468ceb8ecc7dfb20b,
+        type: 3}
+      propertyPath: easeHealthSlider
+      value: 
+      objectReference: {fileID: 1864033114}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4995302015233261417, guid: 20d6c83476bf3c4468ceb8ecc7dfb20b,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2020105660}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20d6c83476bf3c4468ceb8ecc7dfb20b, type: 3}
---- !u!1 &2020105659 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4995302015233261417, guid: 20d6c83476bf3c4468ceb8ecc7dfb20b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2020105658}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2020105660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2020105659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efa418ec3a971cd4fa61833ba19cd599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 1404724105}
-  target: {fileID: 0}
-  playerHealth: 1
 --- !u!1 &2107996569
 GameObject:
   m_ObjectHideFlags: 0
