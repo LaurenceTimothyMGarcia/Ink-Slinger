@@ -6,14 +6,15 @@ using UnityEngine.SceneManagement;
 public class MovePlayer : MonoBehaviour
 {
     public Animator animator;
+    [SerializeField] EnemySpawner spawner;
 
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior;
     TurnBasedBehavior turnBasedBehavior;
     public float movementTime = .25f; // time in seconds between each input read
 
-    public int hitrange = 1;
     public int strength = 5;
+    public Direction facing = Direction.UP;
 
     bool canMove = true;
 
@@ -54,9 +55,9 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire2")) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+       // if(Input.GetButtonDown("Fire2")) {
+       //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+       // }
         float xDirection = Input.GetAxis("Horizontal");
         float yDirection = Input.GetAxis("Vertical");
 
@@ -81,8 +82,18 @@ public class MovePlayer : MonoBehaviour
             else if (Input.GetButton("Fire1"))
             {
                 // temporary; skip your turn
-                Debug.Log("turn skipped");
+                //Debug.Log("turn skipped");
 
+                turnBasedBehavior.EndTurn();
+                StartCoroutine(movementCountdown());
+            }
+            else if (Input.GetButton("Fire2"))
+            {
+                turnBasedBehavior.EndTurn();
+                StartCoroutine(movementCountdown());
+            }
+            else if (Input.GetButton("Fire3"))
+            {
                 turnBasedBehavior.EndTurn();
                 StartCoroutine(movementCountdown());
             }
@@ -123,6 +134,7 @@ public class MovePlayer : MonoBehaviour
         {
             gridItemBehavior.moveToPosition(targetPosition.x, targetPosition.y, movementTime);
             gridItemBehavior.RotateTowards(moveDirection);
+            facing = direction;
             turnBasedBehavior.EndTurn();
         }
         StartCoroutine(movementCountdown());
@@ -138,8 +150,51 @@ public class MovePlayer : MonoBehaviour
         canMove = true;
     }
 
-    void Attack()
+    void Attack(int strength)
     {
-
+        switch (facing)
+        {
+            case Direction.LEFT:{
+                for(int i = 0; i < spawner.enemyList.length; i++)
+                {
+                     Vector2D enemyLocation = spawner.enemyList[i].GridItemBehavior.gridPosition;
+                     if(enemyLocation == new Vector2D(gridItemBehavior.gridposition.x-1, gridItemBehavior.gridposition.y)){
+                        spawner.enemyList[i].takeDamage(strength);
+                     }
+                }
+                break;
+            }
+            case Direction.RIGHT:{
+                for(int i = 0; i < spawner.enemyList.length; i++)
+                {
+                     Vector2D enemyLocation = spawner.enemyList[i].GridItemBehavior.gridPosition;
+                     if(enemyLocation == new Vector2D(gridItemBehavior.gridposition.x+1, gridItemBehavior.gridposition.y)){
+                        spawner.enemyList[i].takeDamage(strength);
+                     }
+                }
+                break;
+            }
+            case Direction.UP:{
+                for(int i = 0; i < spawner.enemyList.length; i++)
+                {
+                     Vector2D enemyLocation = spawner.enemyList[i].GridItemBehavior.gridPosition;
+                     if(enemyLocation == new Vector2D(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y+1)){
+                        spawner.enemyList[i].takeDamage(strength);
+                     }
+                }
+                break;
+            }
+            case Direction.DOWN:{
+                for(int i = 0; i < spawner.enemyList.length; i++)
+                {
+                     Vector2D enemyLocation = spawner.enemyList[i].GridItemBehavior.gridPosition;
+                     if(enemyLocation == new Vector2D(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y-1)){
+                        spawner.enemyList[i].takeDamage(strength);
+                     }
+                }
+                break;
+            }
+        }
     }
+
 }
