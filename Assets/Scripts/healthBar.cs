@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class healthBar : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class healthBar : MonoBehaviour
     public Slider healthSlider;
     public Slider easeHealthSlider;
     public float maxHealth = 100f;
+    public bool isPlayer = false;
 
     private float health;
     private float lerpSpeed = 0.05f;
@@ -51,6 +53,11 @@ public class healthBar : MonoBehaviour
 
     private void KillEntity()
     {
+        if (isPlayer == true)
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("DeathScreen");
+        }
         Destroy(this.gameObject);
     }
 }

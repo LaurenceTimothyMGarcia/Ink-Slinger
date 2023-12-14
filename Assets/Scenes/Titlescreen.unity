@@ -182,10 +182,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "The main character is an author trying to write a book. As they\u2019re
     writing they get sucked into the book, thus waking up in an ocean surrounded
-    by creatures made out of ink. They realize that it\u2019s the story they wrote
-    and because of that know that the sea has become corrupted by a kraken (the boss).
+    by creatures made out of ink. They realize that it\u2019s the story they wrote.
     The author finishes their book based on their experience by the end of the game
-    after defeating the boss and the game itself is more a recollection of events."
+    after defeating the boss."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
