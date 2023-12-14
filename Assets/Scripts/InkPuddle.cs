@@ -18,7 +18,8 @@ public class InkPuddle : MonoBehaviour
 
         gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
         gridItemBehavior = GetComponent<GridItemBehavior>();
-        SpawnInk();
+
+        gameObject.transform.position += new Vector3(0, 0.75f, 0);
     }
 
     void Update()
@@ -26,17 +27,7 @@ public class InkPuddle : MonoBehaviour
         if (player.GetComponent<GridItemBehavior>().gridPosition == gridItemBehavior.gridPosition)
         {
             player.GetComponent<inkBar>().gainInk(inkGain);
+            Destroy(this.gameObject);
         }
-    }
-
-    void SpawnInk()
-    {
-        int x = Random.Range(0, gridGenerator.gridArray.GetLength(0) - 1), y = Random.Range(0, gridGenerator.gridArray.GetLength(1) - 1);
-        while(gridGenerator.gridArray[x,y] == null) {
-            x = Random.Range(0, gridGenerator.gridArray.GetLength(0) - 1);
-            y = Random.Range(0, gridGenerator.gridArray.GetLength(1) - 1);
-        }
-
-        gridItemBehavior.moveToPosition(x, y, 0);
     }
 }

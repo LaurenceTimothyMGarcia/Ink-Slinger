@@ -100,7 +100,7 @@ public class EnemyBehavior : MonoBehaviour
         // FindObjectOfType<AudioManager>().PlaySFX("EnemyDeath");
         // inkSpawner.SpawnInk(enemyName);
         GameObject iPuddle = Instantiate(inkPuddle);
-        iPuddle.GetComponent<GridItemBehavior>().gridPosition = new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y);
+        iPuddle.GetComponent<GridItemBehavior>().moveToPosition(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y, 0);
         Destroy(gameObject);
     }
 }
