@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class MovePlayer : MonoBehaviour
 {
     public Animator animator;
-    [SerializeField] EnemySpawner spawner;
+    
+    EnemySpawner spawner;
 
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior;

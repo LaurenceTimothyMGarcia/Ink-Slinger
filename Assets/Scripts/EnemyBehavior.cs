@@ -16,8 +16,11 @@ public class EnemyBehavior : MonoBehaviour
     GridItemBehavior gridItemBehavior;
     InkSpawner inkSpawner;
 
-    public int MaxHealth = 3;
-    int health;
+    public float MaxHealth = 3;
+    float health;
+    float uiHealth;
+
+    private float lerpSpeed = 0.05f;
 
     //Possibly will use this for puddles, could do either maybe?
     //public static event Action<EnemySystem> OnEnemyKilled;
@@ -35,13 +38,26 @@ public class EnemyBehavior : MonoBehaviour
     void Start()
     {
         health = MaxHealth;
+        uiHealth = health / MaxHealth * 100;
     }
 
     void Update()
     {
+        uiHealth = health / MaxHealth * 100;
+
         if (health <= 0) 
         {
             DestroyEnemy(this.gameObject.name);
+        }
+
+        if (healthSlider.value != uiHealth)
+        {
+            healthSlider.value = uiHealth;
+        }
+
+        if (healthSlider.value != easeHealthSlider.value)
+        {
+            easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, uiHealth, lerpSpeed);
         }
     }
 

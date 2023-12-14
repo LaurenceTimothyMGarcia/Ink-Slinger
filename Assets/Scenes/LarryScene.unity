@@ -223,6 +223,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InkPuddleSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 4696556818980342557, guid: 92b0ce5362ecb654d8d0d8d216258843,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -333,7 +338,7 @@ PrefabInstance:
     - target: {fileID: 5669670509074895668, guid: c64dbf91fbefbbb44a99dd5244a54261,
         type: 3}
       propertyPath: prefabs.Array.data[0].enemyAmount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5669670509074895668, guid: c64dbf91fbefbbb44a99dd5244a54261,
         type: 3}
@@ -343,7 +348,7 @@ PrefabInstance:
     - target: {fileID: 5669670509074895668, guid: c64dbf91fbefbbb44a99dd5244a54261,
         type: 3}
       propertyPath: prefabs.Array.data[2].enemyAmount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6897801725122306760, guid: c64dbf91fbefbbb44a99dd5244a54261,
         type: 3}
