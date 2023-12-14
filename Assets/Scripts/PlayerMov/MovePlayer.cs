@@ -10,6 +10,9 @@ public class NewBehaviourScript : MonoBehaviour
     TurnBasedBehavior turnBasedBehavior;
     public int movementTime = 1; // time in seconds between each input read
 
+    public int hitrange = 1;
+    public int strength = 5;
+
     bool canMove = true;
 
     enum Direction {
@@ -99,5 +102,10 @@ public class NewBehaviourScript : MonoBehaviour
             yield return new WaitForSeconds(movementTime);
             canMove = true;
         }
+    }
+
+    void Attack()
+    {
+
     }
 }
