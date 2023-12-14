@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    GridItemBehavior gridItemBehavior;
+    public Animator animator;
     public GameObject player;
-    InkSpawner inkSpawner;
 
-    //temporary
-    GameObject healthBar;
+    public Slider healthSlider;
+    public Slider easeHealthSlider;
+
+    GridItemBehavior gridItemBehavior;
+    InkSpawner inkSpawner;
 
     public int MaxHealth = 3;
     int health;
@@ -24,15 +27,33 @@ public class EnemyBehavior : MonoBehaviour
         //agent = GetComponent<NavMeshAgent>(); 
 
         gridItemBehavior = GetComponent<GridItemBehavior>();
-
-        // temp
-        healthBar = GameObject.FindGameObjectWithTag("HealthBar");
     }
 
     // Start is called before the first frame update
     void Start()
     {
         health = MaxHealth;
+    }
+
+    void Update()
+    {
+        if (health <= 0) 
+        {
+            DestroyEnemy(this.gameObject.name);
+        }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        if (health > 0)
+        {
+            animator.SetTrigger("Hurt");
+            health -= amount;
+        }
+        else 
+        {
+            health = 0;
+        }
     }
 
     public void ChasePlayer(int TileSpeed)
@@ -49,7 +70,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public void HurtPlayer(int amount)
     {
-        healthBar.GetComponent<healthBar>().takeDamage(amount);
+        player.GetComponent<healthBar>().takeDamage(amount);
     }
 
     public void DestroyEnemy(string enemyName)

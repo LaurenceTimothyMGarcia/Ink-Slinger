@@ -5242,6 +5242,7 @@ GameObject:
   - component: {fileID: 1971815324110767826}
   - component: {fileID: 7058419504819505601}
   - component: {fileID: 6074824581503624597}
+  - component: {fileID: 7682655039506310515}
   m_Layer: 7
   m_Name: InkSlinger
   m_TagString: Player
@@ -5328,6 +5329,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c05e44d0e8c77a41b1f83fa88a8af2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7682655039506310515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4995302015233261417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a59d7d5fb945064ea741666487dc791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8085924223744774674}
+  healthSlider: {fileID: 0}
+  easeHealthSlider: {fileID: 0}
+  maxHealth: 100
 --- !u!1 &5064212172836325190
 GameObject:
   m_ObjectHideFlags: 0
