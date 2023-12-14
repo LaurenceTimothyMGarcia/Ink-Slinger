@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class healthBar : MonoBehaviour
 {
+    public Animator animator;
+
     public Slider healthSlider;
     public Slider easeHealthSlider;
     public float maxHealth = 100f;
-    public float health;
+
+    private float health;
     private float lerpSpeed = 0.05f;
     // Start is called before the first frame update
     void Start()
@@ -19,13 +22,14 @@ public class healthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+        {
+            KillEntity();
+        }
+
         if (healthSlider.value != health)
         {
             healthSlider.value = health;
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            takeDamage(10);
         }
 
         if (healthSlider.value != easeHealthSlider.value)
@@ -33,9 +37,20 @@ public class healthBar : MonoBehaviour
             easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, health, lerpSpeed);
         }
 
-        void takeDamage(float damage)
+
+    }
+
+    public void takeDamage(float damage)
+    {
+        if (health > 0)
         {
+            animator.SetTrigger("Hurt");
             health -= damage;
         }
+    }
+
+    private void KillEntity()
+    {
+        Destroy(this.gameObject);
     }
 }

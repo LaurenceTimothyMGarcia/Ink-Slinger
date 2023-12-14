@@ -24,8 +24,8 @@ public class EnemySpawner : MonoBehaviour
     {
         gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
 
-        SpawnEnemyRandomly(EnemyType.RANGLER);
-        SpawnEnemyRandomly(EnemyType.RANGLER);
+        // SpawnEnemyRandomly(EnemyType.MINNOW);
+        SpawnEnemyRandomly(EnemyType.SHARK);
         SpawnEnemyRandomly(EnemyType.RANGLER);
     }
 
@@ -50,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         GameObject newEnemy = Instantiate(iPrefab.prefab, new Vector3(0,0,0), Quaternion.identity);
-        newEnemy.GetComponent<GridItemBehavior>().moveToPosition(x, y);
+        newEnemy.GetComponent<GridItemBehavior>().moveToPosition(x, y, 0);
 
     }
 }

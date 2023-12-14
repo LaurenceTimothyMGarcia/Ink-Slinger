@@ -29,6 +29,8 @@ public class MinnowBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
+
         //agent = GetComponent<NavMeshAgent>();
         //can change this value
         health = 2f;

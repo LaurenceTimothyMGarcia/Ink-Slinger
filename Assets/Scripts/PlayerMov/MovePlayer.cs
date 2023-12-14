@@ -1,21 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class NewBehaviourScript : MonoBehaviour
+public class MovePlayer : MonoBehaviour
 {
-    public float speed = .1f;
+    public Animator animator;
+
     GridBehavior gridGenerator;
-    GridItemBehavior gridItemBehavior; 
+    GridItemBehavior gridItemBehavior;
     TurnBasedBehavior turnBasedBehavior;
-    public int movementTime = 1; // time in seconds between each input read
+    public float movementTime = .25f; // time in seconds between each input read
 
     public int hitrange = 1;
     public int strength = 5;
 
     bool canMove = true;
 
-    enum Direction {
+    enum Direction
+    {
         UP,
         LEFT,
         DOWN,
@@ -29,17 +32,20 @@ public class NewBehaviourScript : MonoBehaviour
         turnBasedBehavior = GetComponent<TurnBasedBehavior>();
 
         GetStartPosition();
-        StartCoroutine(movementCountdown());
     }
 
     // temporary function that just grabs the first valid start position it finds and uses that
-    void GetStartPosition() {
+    void GetStartPosition()
+    {
         int startX = 0;
         int startY = 0;
-        for(startX = 0; startX < gridGenerator.rows; startX++) {
-            for (startY = 0; startY < gridGenerator.columns; startY++) {
-                if(gridGenerator.IsPositionValid(startX, startY)) {
-                    gridItemBehavior.moveToPosition(startX, startY);
+        for (startX = 0; startX < gridGenerator.rows; startX++)
+        {
+            for (startY = 0; startY < gridGenerator.columns; startY++)
+            {
+                if (gridGenerator.IsPositionValid(startX, startY))
+                {
+                    gridItemBehavior.moveToPosition(startX, startY, movementTime);
                     return;
                 }
             }
@@ -48,60 +54,88 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetButtonDown("Fire2")) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         float xDirection = Input.GetAxis("Horizontal");
         float yDirection = Input.GetAxis("Vertical");
 
-        if(canMove) {
-            if((xDirection != 0 || yDirection != 0) && turnBasedBehavior.TurnStarted()) {
-                Direction selectedDirection = GetCardinalDirection(xDirection, yDirection);
-                Debug.Log(selectedDirection);
-                AttemptMovement(selectedDirection);
+        if (canMove && turnBasedBehavior.TurnStarted())
+        {
+            if (Input.GetButton("Down"))
+            {
+                AttemptMovement(Direction.DOWN);
             }
-            canMove = false;
+            else if (Input.GetButton("Up"))
+            {
+                AttemptMovement(Direction.UP);
+            }
+            else if (Input.GetButton("Left"))
+            {
+                AttemptMovement(Direction.LEFT);
+            }
+            else if (Input.GetButton("Right"))
+            {
+                AttemptMovement(Direction.RIGHT);
+            }
+            else if (Input.GetButton("Fire1"))
+            {
+                // temporary; skip your turn
+                Debug.Log("turn skipped");
+
+                turnBasedBehavior.EndTurn();
+                StartCoroutine(movementCountdown());
+            }
         }
     }
 
-    Direction GetCardinalDirection(float xInput, float yInput) {
-        Vector2 moveDirection = new Vector2(xInput, yInput).normalized;
-        float shortestDistance = 100;
-        int outIndex = 0;
-        Vector2[] directionArray = {Vector2.up, Vector2.left, Vector2.down, Vector2.right};
-
-        for(int i = 0; i < 4; i++) {
-            float thisDist = Vector2.Distance(moveDirection, directionArray[i]);
-            if(thisDist < shortestDistance) {
-                shortestDistance = thisDist;
-                outIndex = i;
-            }
-        }
-
-        return (Direction) outIndex;
-    }
-
-    void AttemptMovement(Direction direction) {
+    void AttemptMovement(Direction direction)
+    {
         Vector2Int targetPosition = gridItemBehavior.gridPosition;
+        Vector3 moveDirection = Vector3.zero;
+
         // select target grid position depending on inputted direction
-        switch(direction) {
-            case Direction.LEFT: {targetPosition.x -= 1; break;}
-            case Direction.RIGHT: {targetPosition.x += 1; break;}
-            case Direction.UP: {targetPosition.y += 1; break;}
-            case Direction.DOWN: {targetPosition.y -= 1; break;}
+        switch (direction)
+        {
+            case Direction.LEFT: { 
+                targetPosition.x -= 1; 
+                moveDirection = Vector3.left;
+                break; 
+            }
+            case Direction.RIGHT: { 
+                targetPosition.x += 1; 
+                moveDirection = Vector3.right;
+                break; 
+            }
+            case Direction.UP: { 
+                targetPosition.y += 1; 
+                moveDirection = Vector3.forward;
+                break; 
+            }
+            case Direction.DOWN: { 
+                targetPosition.y -= 1; 
+                moveDirection = Vector3.back;
+                break; 
+            }
         }
-        
-        if(gridGenerator.IsPositionValid(targetPosition.x, targetPosition.y)) {
-            gridItemBehavior.moveToPosition(targetPosition.x, targetPosition.y);
+
+        if (gridGenerator.IsPositionValid(targetPosition.x, targetPosition.y))
+        {
+            gridItemBehavior.moveToPosition(targetPosition.x, targetPosition.y, movementTime);
+            gridItemBehavior.RotateTowards(moveDirection);
             turnBasedBehavior.EndTurn();
         }
+        StartCoroutine(movementCountdown());
     }
 
-// this is a really mcgwyver solution to get user input from axes
-// i think ideally this would instead work via button down
-// but god fucking damn
-    IEnumerator movementCountdown() {
-        while(true) {
-            yield return new WaitForSeconds(movementTime);
-            canMove = true;
-        }
+    // this is a really mcgwyver solution to get user input from axes
+    // i think ideally this would instead work via button down
+    // but god fucking damn
+    IEnumerator movementCountdown()
+    {
+        canMove = false;
+        yield return new WaitForSeconds(movementTime);
+        canMove = true;
     }
 
     void Attack()

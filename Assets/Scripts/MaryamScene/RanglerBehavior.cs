@@ -5,99 +5,37 @@ using UnityEngine.AI;
 
 public class RanglerBehavior : MonoBehaviour
 {
-    //Navmesh removed just in case 
-    //public NavMeshAgent agent;
-
-    GridItemBehavior gridItemBehavior;
     TurnBasedBehavior turnBasedBehavior;
+    EnemyBehavior enemyBehavior;
 
-    public GameObject player;
+    public Animator animator;
 
-    public LayerMask whatIsGround, whatIsPlayer;
-
-    public float timeBtwAttacks, attackRange, sightRange, health;
-
-    public bool alrdyAttacked, playerInAttackRange;
-
-    float damageDealt = 1f;
-
-    int tileSpeed = 3; // the number of tiles the rangler moves per action
-
-    //Possibly will use this for puddles, could do either maybe?
-    //public static event Action<EnemySystem> OnEnemyKilled;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Max health = 3f for now lol
-        health = 3f;
-    }
+    public int DamageAmount = 10;
+    public int AttackRange = 1;
+    public int MovementSpeed = 1;
 
     private void Awake()
     {
-        //Whatever the player's name is, replace the string in the delimiter
-        player = GameObject.Find("Player");
-        //agent = GetComponent<NavMeshAgent>(); 
-
-        gridItemBehavior = GetComponent<GridItemBehavior>();
         turnBasedBehavior = GetComponent<TurnBasedBehavior>();
+        enemyBehavior = GetComponent<EnemyBehavior>();
     }
 
     void Update() {
         if(turnBasedBehavior.TurnStarted()) {
-            ChasePlayer();
+            if(enemyBehavior.PlayerInRange(AttackRange)) {
+
+                FindObjectOfType<AudioManager>().PlaySFX("AnglerBite");
+                animator.SetTrigger("Attack");
+
+                // attack player
+                enemyBehavior.HurtPlayer(DamageAmount);
+
+                // animator.SetTrigger("Attack");
+            }
+            else {
+                enemyBehavior.ChasePlayer(MovementSpeed);
+            }
             turnBasedBehavior.EndTurn();
         }
-    }
-
-
-    // Update is called once per frame
-    public void UpdateState()
-    {
-        //Check if you can attack
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (!playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange) AttackPlayer();
-    }
-
-    private void ChasePlayer()
-    {
-        gridItemBehavior.GetPathTo(player.GetComponent<GridItemBehavior>().gridPosition);
-        StartCoroutine(gridItemBehavior.MoveOnPath(tileSpeed));
-    }
-
-    private void AttackPlayer()
-    {
-        //agent.SetDestination(transform.position);
-        transform.LookAt(player.transform);
-        if (!alrdyAttacked)
-        {
-            //attack code here like (player.health -= damageDealt, need player object?)
-
-            alrdyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBtwAttacks);
-        }
-    }
-
-    private void ResetAttack()
-    {
-        alrdyAttacked = false;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if (health <= 0)
-        {
-            Invoke(nameof(DestroyEnemy), 0.5f);
-        }
-    }
-
-    public void DestroyEnemy()
-    {
-        Destroy(gameObject);
-        //possibly create ink puddle here as well
     }
 }

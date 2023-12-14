@@ -5,129 +5,76 @@ using UnityEngine.AI;
 
 public class SharkBehavior : MonoBehaviour
 {
-    //Navmesh removed just in case 
-    //public NavMeshAgent agent;
+    TurnBasedBehavior turnBasedBehavior;
+    GridItemBehavior gridItemBehavior;
+    EnemyBehavior enemyBehavior;
 
-    public GridBehavior shark;
+    public Animator animator;
 
-    public Transform player;
+    public int AttackRange = 1;
+    public int DamageAmount = 10;
+    public int MovementSpeed = 1;
+    public int AggroActions = 2;
+    public int AggroRange = 6;
+    public float movementTime = 0.5f;
 
-    public LayerMask whatIsGround, whatIsPlayer;
+    bool aggro = false;
+    
+    // temp movement stuff
+    bool movingRight = true;
 
-    public float timeBtwAttacks, attackRange, sightRange, health;
+    void Awake() {
+        turnBasedBehavior = GetComponent<TurnBasedBehavior>();
+        enemyBehavior = GetComponent<EnemyBehavior>();
+        gridItemBehavior = GetComponent<GridItemBehavior>();
 
-    public bool alrdyAttacked, playerInAttackRange, playerInSightRange;
-
-    float damageDealt = 1f;
-
-    //Shark only
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
-
-    //Possibly will use this for puddles, could do either maybe?
-    //public static event Action<EnemySystem> OnEnemyKilled;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Max health = 3f for now lol
-        health = 3f;   
-    }
-
-    private void Awake()
-    {
-        //Whatever the player's name is, replace the string in the delimiter
-        player = GameObject.Find("Player").transform;
-        //agent = GetComponent<NavMeshAgent>(); 
-    }
-
-    // Update is called once per frame
-    public void UpdateState()
-    {
-        //Check if you can attack
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if(playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange) AttackPlayer();
-    }
-
-    private void Patroling()
-    {
-        if (!walkPointSet) SearchWalkPoint();
-
-        if(walkPointSet)
-        {
-            //agent.SetDestination(walkPoint);
-            shark.setEndX((int)walkPoint.x);
-            shark.setEndY((int)walkPoint.y);
-            shark.SetPath();
-        }
-
-        Vector3 dToWalkPoint = transform.position - walkPoint;
-
-        //walkpoint reached
-        if(dToWalkPoint.magnitude < 1f)
-        {
-            walkPointSet = false;
-        }
 
     }
 
-    private void SearchWalkPoint()
-    {
-        //float randomY = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z);
-
-        if(Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-        {
-            walkPointSet = true;
+    void Update() {
+        if(turnBasedBehavior.TurnStarted()) {
+            if(aggro) {
+                StartCoroutine(AggroBehavior());
+            }
+            else {
+                PatrolBehavior();
+            }
+            turnBasedBehavior.EndTurn();
         }
     }
 
-    private void ChasePlayer()
-    {
-        //agent.SetDestination(player.position);
-        shark.setEndX((int)player.position.x);
-        shark.setEndY((int)player.position.y);
-        shark.SetPath();
-    }
-
-    private void AttackPlayer()
-    {
-        //agent.SetDestination(transform.position);
-        transform.LookAt(player);
-        if (!alrdyAttacked)
-        {
-            //attack code here like (player.health -= damageDealt, need player object?)
-
-            alrdyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBtwAttacks);
+    IEnumerator AggroBehavior() {
+        for(int i = 0; i < AggroActions; i++){
+            if(enemyBehavior.PlayerInRange(AttackRange)) {
+                enemyBehavior.HurtPlayer(DamageAmount);
+            }
+            else {
+                enemyBehavior.ChasePlayer(MovementSpeed);
+            }
+            
+            yield return new WaitForSeconds(.2f);
         }
     }
 
-    private void ResetAttack()
-    {
-        alrdyAttacked = false;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if(health <= 0)
-        {
-            Invoke(nameof(DestroyEnemy), 0.5f);
+    void PatrolBehavior() {
+        // patrol movement
+        PatrolMovement();
+        // check if player is in range
+        if(enemyBehavior.PlayerInRange(AggroRange)) {
+            FindObjectOfType<AudioManager>().PlaySFX("SharkDetect");
+            aggro = true;
         }
     }
 
-    public void DestroyEnemy()
-    {
-        Destroy(gameObject);
-        //possibly create ink puddle here as well
+    void PatrolMovement() {
+        // really sorry for this line of code
+        // the ternary operator is here to change which direction is checked
+        // this code determines if the cell in the direction the shark is traveling is valid
+        // if it isn't, the shark turns around
+        if(!GameObject.Find("GridGenerator").GetComponent<GridBehavior>().IsPositionValid(gridItemBehavior.gridPosition.x + (movingRight ? 1 : -1)  , gridItemBehavior.gridPosition.y)) {
+            movingRight = !movingRight;
+        }
+
+        gridItemBehavior.moveToPosition(gridItemBehavior.gridPosition.x + (movingRight ? 1 : -1), gridItemBehavior.gridPosition.y, movementTime);
     }
 }

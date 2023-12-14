@@ -85,7 +85,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 81
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -173,10 +173,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 116923321372814062}
-  - component: {fileID: 5704209770779595521}
   m_Layer: 0
   m_Name: Health Bar
-  m_TagString: Untagged
+  m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,22 +196,6 @@ Transform:
   - {fileID: 3470278588000666530}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5704209770779595521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7075193604880668402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a59d7d5fb945064ea741666487dc791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 3248675969817039122}
-  easeHealthSlider: {fileID: 4308149179429822291}
-  maxHealth: 100
-  health: 0
 --- !u!1 &7217805143384925501
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +206,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5479438408605334241}
   - component: {fileID: 4308149179429822291}
-  - component: {fileID: 8997735694246238201}
   m_Layer: 5
   m_Name: Ease Health Bar
   m_TagString: Untagged
@@ -299,26 +281,10 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 32
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8997735694246238201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7217805143384925501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a59d7d5fb945064ea741666487dc791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 3248675969817039122}
-  easeHealthSlider: {fileID: 4308149179429822291}
-  maxHealth: 100
-  health: 60
 --- !u!1 &7615065397612317504
 GameObject:
   m_ObjectHideFlags: 0
