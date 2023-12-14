@@ -43,6 +43,10 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
+    public void MoveRandomly() {
+        // todo: something here
+    }
+
     public void TakeDamage(int amount)
     {
         if (health > 0)
