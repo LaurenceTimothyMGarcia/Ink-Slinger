@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MovePlayer : MonoBehaviour
 {
     public Animator animator;
+    [SerializeField] EnemySpawner spawner;
 
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior;
@@ -14,6 +15,8 @@ public class MovePlayer : MonoBehaviour
     GameObject trapdoor;
 
     public float movementTime = .25f; // time in seconds between each input read
+
+    public int strength = 5;
 
     bool canMove = true;
 
@@ -24,6 +27,8 @@ public class MovePlayer : MonoBehaviour
         DOWN,
         RIGHT
     }
+
+    public Direction facing = Direction.UP;
 
     void Start()
     {
@@ -76,9 +81,9 @@ public class MovePlayer : MonoBehaviour
             }
         }
 
-        if(Input.GetButtonDown("Fire2")) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+       // if(Input.GetButtonDown("Fire2")) {
+       //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+       // }
         float xDirection = Input.GetAxis("Horizontal");
         float yDirection = Input.GetAxis("Vertical");
 
@@ -103,7 +108,22 @@ public class MovePlayer : MonoBehaviour
             else if (Input.GetButton("Fire1"))
             {
                 // temporary; skip your turn
-                Debug.Log("turn skipped");
+                //Debug.Log("turn skipped");
+                Attack(strength);
+
+                turnBasedBehavior.EndTurn();
+                StartCoroutine(movementCountdown());
+            }
+            else if (Input.GetButton("Fire2"))
+            {
+                Attack(strength*3);
+
+                turnBasedBehavior.EndTurn();
+                StartCoroutine(movementCountdown());
+            }
+            else if (Input.GetButton("Fire3"))
+            {
+                aoeAttack(strength*3);
 
                 turnBasedBehavior.EndTurn();
                 StartCoroutine(movementCountdown());
@@ -145,6 +165,7 @@ public class MovePlayer : MonoBehaviour
         {
             gridItemBehavior.moveToPosition(targetPosition.x, targetPosition.y, movementTime);
             gridItemBehavior.RotateTowards(moveDirection);
+            facing = direction;
             turnBasedBehavior.EndTurn();
         }
         StartCoroutine(movementCountdown());
@@ -159,4 +180,72 @@ public class MovePlayer : MonoBehaviour
         yield return new WaitForSeconds(movementTime);
         canMove = true;
     }
+
+    void Attack(int strength)
+    {
+        switch (facing)
+        {
+            case Direction.LEFT:{
+                for(int i = 0; i < spawner.enemyList.length; i++)
+                {
+                    Vector2DInt enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                    if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x-1, gridItemBehavior.gridposition.y)){
+                    spawner.enemyList[i].takeDamage(strength);
+                    }
+                }
+                break;
+            }
+            case Direction.RIGHT:{
+                for(int i = 0; i < spawner.enemyList.length; i++)
+                {
+                    Vector2DInt enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                    if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x+1, gridItemBehavior.gridposition.y)){
+                    spawner.enemyList[i].takeDamage(strength);
+                    }
+                }
+                break;
+            }
+            case Direction.UP:{
+                for(int i = 0; i < spawner.enemyList.length; i++)
+                {
+                    Vector2DInt enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                    if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y+1)){
+                    spawner.enemyList[i].takeDamage(strength);
+                    }
+                }
+                break;
+            }
+            case Direction.DOWN:{
+                for(int i = 0; i < spawner.enemyList.length; i++)
+                {
+                    Vector2DInt enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                    if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y-1)){
+                    spawner.enemyList[i].takeDamage(strength);
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    void aoeAttack(int strength)
+    {
+        for(int i = 0; i < spawner.enemyList.length; i++)
+            {
+                Vector2DInt enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x+1, gridItemBehavior.gridposition.y)){
+                spawner.enemyList[i].takeDamage(strength);
+                }
+                if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x-1, gridItemBehavior.gridposition.y)){
+                spawner.enemyList[i].takeDamage(strength);
+                }
+                if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y+1)){
+                spawner.enemyList[i].takeDamage(strength);
+                }
+                if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y-1)){
+                spawner.enemyList[i].takeDamage(strength);
+                }
+            }
+    }
+
 }

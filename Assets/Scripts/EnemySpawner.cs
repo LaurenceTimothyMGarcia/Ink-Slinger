@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    //public TrapdoorSpawn trapdoorSpawn;
-
+    public static ArrayList enemyList = new ArrayList();
     public enum EnemyType {
         RANGLER,
         MINNOW,
@@ -90,6 +89,6 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject newEnemy = Instantiate(iPrefab.prefab, new Vector3(0,0,0), Quaternion.identity);
         newEnemy.GetComponent<GridItemBehavior>().moveToPosition(x, y, 0);
-
+        enemyList.Add(newEnemy);
     }
 }
