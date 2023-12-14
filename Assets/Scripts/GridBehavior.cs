@@ -85,6 +85,16 @@ public class GridBehavior : MonoBehaviour
         }
     }
 
+    public Vector2Int GetRandomValidPosition() {
+        int x = Random.Range(0, gridArray.GetLength(0) - 1), y = Random.Range(0, gridArray.GetLength(1) - 1);
+        while(gridArray[x,y] == null) {
+            x = Random.Range(0, gridArray.GetLength(0) - 1);
+            y = Random.Range(0, gridArray.GetLength(1) - 1);
+        }
+
+        return new Vector2Int(x,y);
+    }
+
     int GetDistance(int x1, int y1, int x2, int y2)
     {
         return (Mathf.Abs(x1 - x2) + Mathf.Abs(y1 - y2));
