@@ -10,6 +10,9 @@ public class MovePlayer : MonoBehaviour
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior;
     TurnBasedBehavior turnBasedBehavior;
+
+    GameObject trapdoor;
+
     public float movementTime = .25f; // time in seconds between each input read
 
     bool canMove = true;
@@ -27,6 +30,8 @@ public class MovePlayer : MonoBehaviour
         gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
         gridItemBehavior = GetComponent<GridItemBehavior>();
         turnBasedBehavior = GetComponent<TurnBasedBehavior>();
+
+        trapdoor = GameObject.FindGameObjectWithTag("Trapdoor");
 
         GetStartPosition();
     }
@@ -51,6 +56,26 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
+        if (trapdoor.GetComponent<GridItemBehavior>().gridPosition == gridItemBehavior.gridPosition)
+        {
+            Debug.Log("MOVE TO NEXT STATE");
+
+            if (trapdoor.GetComponent<TrapdoorSpawn>().goLevel1)
+            {
+                SceneManager.LoadScene("Titlescreen");
+            }
+
+            if (trapdoor.GetComponent<TrapdoorSpawn>().goLevel2)
+            {
+                SceneManager.LoadScene("Level2");
+            }
+
+            if (trapdoor.GetComponent<TrapdoorSpawn>().goLevel3)
+            {
+                SceneManager.LoadScene("Level3");
+            }
+        }
+
         if(Input.GetButtonDown("Fire2")) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

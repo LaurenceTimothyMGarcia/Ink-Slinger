@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,6 @@ public class TrapdoorSpawn : MonoBehaviour
 {
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior;
-    Collider collider;
 
     public bool goLevel1;
     public bool goLevel2;
@@ -43,35 +43,35 @@ public class TrapdoorSpawn : MonoBehaviour
     //     }
     // }
 
-    void OnTriggerEnter(Collider collider)
-    {
-        // Debug.Log("Player entered thingy");
+    // void OnTriggerEnter(Collider collider)
+    // {
+    //     // Debug.Log("Player entered thingy");
 
-        if (collider.CompareTag("Player"))
-        {
-            Debug.Log("Tag be tagging");
-            NextLevel();
-        }
-    }
+    //     if (collider.CompareTag("Player"))
+    //     {
+    //         Debug.Log("Tag be tagging");
+    //         NextLevel();
+    //     }
+    // }
 
 
-    public void NextLevel()
-    {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //SceneManager.LoadScene("ProtoTypeBuild");
-        if (goLevel1)
-        {
-            SceneManager.LoadScene("Titlescreen");
-        }
+    // public void NextLevel()
+    // {
+    //     //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    //     //SceneManager.LoadScene("ProtoTypeBuild");
+    //     if (goLevel1)
+    //     {
+    //         SceneManager.LoadScene("Titlescreen");
+    //     }
 
-        if (goLevel2)
-        {
-            SceneManager.LoadScene("Level2");
-        }
+    //     if (goLevel2)
+    //     {
+    //         SceneManager.LoadScene("Level2");
+    //     }
 
-        if (goLevel3)
-        {
-            SceneManager.LoadScene("Level3");
-        }
-    }
+    //     if (goLevel3)
+    //     {
+    //         SceneManager.LoadScene("Level3");
+    //     }
+    // }
 }
