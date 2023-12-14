@@ -8,6 +8,8 @@ public class RanglerBehavior : MonoBehaviour
     TurnBasedBehavior turnBasedBehavior;
     EnemyBehavior enemyBehavior;
 
+    public Animator animator;
+
     public int DamageAmount = 10;
     public int AttackRange = 1;
     public int MovementSpeed = 1;

@@ -9,6 +9,8 @@ public class SharkBehavior : MonoBehaviour
     GridItemBehavior gridItemBehavior;
     EnemyBehavior enemyBehavior;
 
+    public Animator animator;
+
     public int AttackRange = 1;
     public int DamageAmount = 10;
     public int MovementSpeed = 1;

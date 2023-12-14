@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MovePlayer : MonoBehaviour
 {
+    public Animator animator;
+
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior;
     TurnBasedBehavior turnBasedBehavior;
