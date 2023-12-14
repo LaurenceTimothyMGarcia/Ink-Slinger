@@ -9,9 +9,9 @@ public class TrapdoorSpawn : MonoBehaviour
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior;
 
-    public bool goLevel1;
     public bool goLevel2;
     public bool goLevel3;
+    public bool finishGame;
 
     // Start is called before the first frame update
     void Start()
@@ -31,47 +31,4 @@ public class TrapdoorSpawn : MonoBehaviour
 
         gridItemBehavior.moveToPosition(x, y, 0);
     }
-
-    // void OnCollisionEnter(Collision collision)
-    // {
-    //     Debug.Log("somethign collide");
-
-    //     if (collision.gameObject.CompareTag("Player"))
-    //     {
-    //         Debug.Log("Tag be tagging");
-    //         NextLevel();
-    //     }
-    // }
-
-    // void OnTriggerEnter(Collider collider)
-    // {
-    //     // Debug.Log("Player entered thingy");
-
-    //     if (collider.CompareTag("Player"))
-    //     {
-    //         Debug.Log("Tag be tagging");
-    //         NextLevel();
-    //     }
-    // }
-
-
-    // public void NextLevel()
-    // {
-    //     //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    //     //SceneManager.LoadScene("ProtoTypeBuild");
-    //     if (goLevel1)
-    //     {
-    //         SceneManager.LoadScene("Titlescreen");
-    //     }
-
-    //     if (goLevel2)
-    //     {
-    //         SceneManager.LoadScene("Level2");
-    //     }
-
-    //     if (goLevel3)
-    //     {
-    //         SceneManager.LoadScene("Level3");
-    //     }
-    // }
 }

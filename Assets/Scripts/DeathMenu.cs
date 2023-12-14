@@ -22,7 +22,10 @@ public class DeathMenu : MonoBehaviour
 
     void Update()
     {
-
+        if (player == null)
+        {
+            DeathScreen();
+        }
     }
 
     public void DeathScreen()
@@ -48,7 +51,7 @@ public class DeathMenu : MonoBehaviour
     {
         // Go To Main Menu Scene 
         Time.timeScale = 1f;
-        SceneManager.LoadScene("TitleScreen");
+        SceneManager.LoadScene("Titlescreen");
     }
 
     public void QuitGame()
