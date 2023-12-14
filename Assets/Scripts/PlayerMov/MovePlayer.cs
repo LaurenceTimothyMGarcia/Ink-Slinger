@@ -162,40 +162,40 @@ public class MovePlayer : MonoBehaviour
             case Direction.LEFT:{
                 for(int i = 0; i < spawner.enemyList.length; i++)
                 {
-                     Vector2DInt enemyLocation = spawner.enemyList[i].GridItemBehavior.gridPosition;
-                     if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x-1, gridItemBehavior.gridposition.y)){
-                        spawner.enemyList[i].takeDamage(strength);
-                     }
+                    Vector2DInt enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                    if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x-1, gridItemBehavior.gridposition.y)){
+                    spawner.enemyList[i].takeDamage(strength);
+                    }
                 }
                 break;
             }
             case Direction.RIGHT:{
                 for(int i = 0; i < spawner.enemyList.length; i++)
                 {
-                     Vector2DInt enemyLocation = spawner.enemyList[i].GridItemBehavior.gridPosition;
-                     if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x+1, gridItemBehavior.gridposition.y)){
-                        spawner.enemyList[i].takeDamage(strength);
-                     }
+                    Vector2DInt enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                    if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x+1, gridItemBehavior.gridposition.y)){
+                    spawner.enemyList[i].takeDamage(strength);
+                    }
                 }
                 break;
             }
             case Direction.UP:{
                 for(int i = 0; i < spawner.enemyList.length; i++)
                 {
-                     Vector2DInt enemyLocation = spawner.enemyList[i].GridItemBehavior.gridPosition;
-                     if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y+1)){
-                        spawner.enemyList[i].takeDamage(strength);
-                     }
+                    Vector2DInt enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                    if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y+1)){
+                    spawner.enemyList[i].takeDamage(strength);
+                    }
                 }
                 break;
             }
             case Direction.DOWN:{
                 for(int i = 0; i < spawner.enemyList.length; i++)
                 {
-                     Vector2DInt enemyLocation = spawner.enemyList[i].GridItemBehavior.gridPosition;
-                     if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y-1)){
-                        spawner.enemyList[i].takeDamage(strength);
-                     }
+                    Vector2DInt enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                    if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y-1)){
+                    spawner.enemyList[i].takeDamage(strength);
+                    }
                 }
                 break;
             }
@@ -205,21 +205,21 @@ public class MovePlayer : MonoBehaviour
     void aoeAttack(int strength)
     {
         for(int i = 0; i < spawner.enemyList.length; i++)
-                {
-                     Vector2DInt enemyLocation = spawner.enemyList[i].GridItemBehavior.gridPosition;
-                     if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x+1, gridItemBehavior.gridposition.y)){
-                        spawner.enemyList[i].takeDamage(strength);
-                     }
-                     if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x-1, gridItemBehavior.gridposition.y)){
-                        spawner.enemyList[i].takeDamage(strength);
-                     }
-                     if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y+1)){
-                        spawner.enemyList[i].takeDamage(strength);
-                     }
-                     if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y-1)){
-                        spawner.enemyList[i].takeDamage(strength);
-                     }
+            {
+                Vector2DInt enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x+1, gridItemBehavior.gridposition.y)){
+                spawner.enemyList[i].takeDamage(strength);
                 }
+                if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x-1, gridItemBehavior.gridposition.y)){
+                spawner.enemyList[i].takeDamage(strength);
+                }
+                if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y+1)){
+                spawner.enemyList[i].takeDamage(strength);
+                }
+                if(enemyLocation == new Vector2DInt(gridItemBehavior.gridposition.x, gridItemBehavior.gridposition.y-1)){
+                spawner.enemyList[i].takeDamage(strength);
+                }
+            }
     }
 
 }
