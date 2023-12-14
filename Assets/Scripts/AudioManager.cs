@@ -17,7 +17,22 @@ public class AudioManager : MonoBehaviour
     public Sound[] music;
     string currentSong = null;
 
+    public static AudioManager instance;
+
     void Awake() {
+
+        DontDestroyOnLoad(gameObject);
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else 
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         foreach(Sound s in sfx) {
             s.source = gameObject.AddComponent<AudioSource>();
 
@@ -42,25 +57,25 @@ public class AudioManager : MonoBehaviour
     }
 
     void Start(){
-        //StartCoroutine(testSounds());
+        PlayMusic("MainTheme");
     }
 
-    IEnumerator testSounds() {
-        Debug.LogWarning("hi");
-        PlayMusic("testLoop");
-        yield return new WaitForSeconds(5);
-        Debug.LogWarning("hi again");
-        PlayMusic("testLoop2");
-        yield return new WaitForSeconds(2);
-        Debug.Log("playing shark noise...");
-        PlaySFX("sharkDetect");
-        yield return new WaitForSeconds(2);
-        Debug.Log("playing death noise...");
-        PlaySFX("enemyDeath");
-        yield return new WaitForSeconds(2);
-        Debug.Log("playing angler noise...");
-        PlaySFX("anglerBite");
-    }
+    // IEnumerator testSounds() {
+    //     Debug.LogWarning("hi");
+    //     PlayMusic("testLoop");
+    //     yield return new WaitForSeconds(5);
+    //     Debug.LogWarning("hi again");
+    //     PlayMusic("testLoop2");
+    //     yield return new WaitForSeconds(2);
+    //     Debug.Log("playing shark noise...");
+    //     PlaySFX("sharkDetect");
+    //     yield return new WaitForSeconds(2);
+    //     Debug.Log("playing death noise...");
+    //     PlaySFX("enemyDeath");
+    //     yield return new WaitForSeconds(2);
+    //     Debug.Log("playing angler noise...");
+    //     PlaySFX("anglerBite");
+    // }
 
     public void PlaySFX(string name) {
         Sound s = Array.Find(sfx, sound => sound.name == name);

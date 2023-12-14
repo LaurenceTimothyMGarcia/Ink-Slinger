@@ -63,8 +63,8 @@ public class GridItemBehavior : MonoBehaviour
         gridGenerator.setStartY(gridPosition.y);
         gridGenerator.setEndX(x);
         gridGenerator.setEndY(y);
-        gridGenerator.SetDistance();
-        gridGenerator.SetPath();
+        //gridGenerator.SetDistance();
+        //gridGenerator.SetPath();
 
         // get a shallow clone of the gridgenerator's path
         this.path = new Stack<GameObject>(gridGenerator.path);

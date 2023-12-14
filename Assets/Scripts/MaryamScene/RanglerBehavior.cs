@@ -24,12 +24,13 @@ public class RanglerBehavior : MonoBehaviour
         if(turnBasedBehavior.TurnStarted()) {
             if(enemyBehavior.PlayerInRange(AttackRange)) {
 
+                FindObjectOfType<AudioManager>().PlaySFX("AnglerBite");
                 animator.SetTrigger("Attack");
 
                 // attack player
                 enemyBehavior.HurtPlayer(DamageAmount);
 
-                animator.SetTrigger("Attack");
+                // animator.SetTrigger("Attack");
             }
             else {
                 enemyBehavior.ChasePlayer(MovementSpeed);

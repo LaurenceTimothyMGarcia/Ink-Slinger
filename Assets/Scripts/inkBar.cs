@@ -24,10 +24,10 @@ public class inkBar : MonoBehaviour
         {
             inkSlider.value = ink;
         }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            takeDamage(10);
-        }
+        // if (Input.GetKeyDown(KeyCode.W))
+        // {
+        //     takeDamage(10);
+        // }
 
         if (inkSlider.value != easeInkSlider.value)
         {
@@ -37,8 +37,30 @@ public class inkBar : MonoBehaviour
 
     }
 
-    public void takeDamage(float damage)
+    public void useInk(float spellCost)
     {
-        ink -= damage;
+        if (ink > 0)
+        {
+            ink -= spellCost;
+        }
+        
+        if (ink < 0)
+        {
+            ink = 0;
+        }
+    }
+
+    public void gainInk(float inkGained)
+    {
+        if (ink < maxInk)
+        {
+            ink += inkGained;
+        }
+
+        if (ink > maxInk)
+        {
+            ink = maxInk;
+        }
+        
     }
 }

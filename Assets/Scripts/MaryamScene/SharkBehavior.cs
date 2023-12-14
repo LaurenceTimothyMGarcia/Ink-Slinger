@@ -61,6 +61,7 @@ public class SharkBehavior : MonoBehaviour
         PatrolMovement();
         // check if player is in range
         if(enemyBehavior.PlayerInRange(AggroRange)) {
+            FindObjectOfType<AudioManager>().PlaySFX("SharkDetect");
             aggro = true;
         }
     }

@@ -11,11 +11,16 @@ public class EnemyBehavior : MonoBehaviour
     public Slider healthSlider;
     public Slider easeHealthSlider;
 
+    public GameObject inkPuddle;
+
     GridItemBehavior gridItemBehavior;
     InkSpawner inkSpawner;
 
-    public int MaxHealth = 3;
-    int health;
+    public float MaxHealth = 3;
+    float health;
+    float uiHealth;
+
+    private float lerpSpeed = 0.05f;
 
     //Possibly will use this for puddles, could do either maybe?
     //public static event Action<EnemySystem> OnEnemyKilled;
@@ -33,14 +38,31 @@ public class EnemyBehavior : MonoBehaviour
     void Start()
     {
         health = MaxHealth;
+        uiHealth = health / MaxHealth * 100;
     }
 
     void Update()
     {
+        uiHealth = health / MaxHealth * 100;
+
         if (health <= 0) 
         {
             DestroyEnemy(this.gameObject.name);
         }
+
+        if (healthSlider.value != uiHealth)
+        {
+            healthSlider.value = uiHealth;
+        }
+
+        if (healthSlider.value != easeHealthSlider.value)
+        {
+            easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, uiHealth, lerpSpeed);
+        }
+    }
+
+    public void MoveRandomly() {
+        // todo: something here
     }
 
     public void TakeDamage(int amount)
@@ -75,7 +97,10 @@ public class EnemyBehavior : MonoBehaviour
 
     public void DestroyEnemy(string enemyName)
     {
+        FindObjectOfType<AudioManager>().PlaySFX("EnemyDeath");
+        // inkSpawner.SpawnInk(enemyName);
+        GameObject iPuddle = Instantiate(inkPuddle);
+        iPuddle.GetComponent<GridItemBehavior>().moveToPosition(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y, 0);
         Destroy(gameObject);
-        inkSpawner.SpawnInk(enemyName);
     }
 }

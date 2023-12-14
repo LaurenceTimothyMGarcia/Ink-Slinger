@@ -7,14 +7,30 @@ public class MovePlayer : MonoBehaviour
 {
     public Animator animator;
 
+    EnemySpawner spawner;
+
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior;
     TurnBasedBehavior turnBasedBehavior;
+    PlayerParticleSystem playerPS;
+
+    inkBar inkGauge;
+
+    GameObject trapdoor;
+
     public float movementTime = .25f; // time in seconds between each input read
+
+    public int meleeAttack = 5;
+    public int meleePoweredAttack = 20;
+    public int plusAOEAttack = 15;
+    public Direction facing = Direction.UP;
+
+    public float inkSpell1Cost = 5f;
+    public float inkSpell2Cost = 10f;
 
     bool canMove = true;
 
-    enum Direction
+    public enum Direction
     {
         UP,
         LEFT,
@@ -27,6 +43,11 @@ public class MovePlayer : MonoBehaviour
         gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
         gridItemBehavior = GetComponent<GridItemBehavior>();
         turnBasedBehavior = GetComponent<TurnBasedBehavior>();
+        playerPS = GetComponent<PlayerParticleSystem>();
+        inkGauge = GetComponent<inkBar>();
+        spawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawner>();
+
+        trapdoor = GameObject.FindGameObjectWithTag("Trapdoor");
 
         GetStartPosition();
     }
@@ -51,10 +72,29 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire2"))
+        if (trapdoor.GetComponent<GridItemBehavior>().gridPosition == gridItemBehavior.gridPosition)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Debug.Log("MOVE TO NEXT STATE");
+
+            if (trapdoor.GetComponent<TrapdoorSpawn>().goLevel2)
+            {
+                SceneManager.LoadScene("Level2");
+            }
+
+            if (trapdoor.GetComponent<TrapdoorSpawn>().goLevel3)
+            {
+                SceneManager.LoadScene("Level3");
+            }
+
+            if (trapdoor.GetComponent<TrapdoorSpawn>().finishGame)
+            {
+                SceneManager.LoadScene("Titlescreen");
+            }
         }
+
+       // if(Input.GetButtonDown("Fire2")) {
+       //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+       // }
         float xDirection = Input.GetAxis("Horizontal");
         float yDirection = Input.GetAxis("Vertical");
 
@@ -79,7 +119,45 @@ public class MovePlayer : MonoBehaviour
             else if (Input.GetButton("Fire1"))
             {
                 // temporary; skip your turn
-                Debug.Log("turn skipped");
+                //Debug.Log("turn skipped");
+                animator.SetTrigger("MeleeAttack");
+                playerPS.PlayUseMeleeSlash();
+
+                Attack(meleeAttack);
+
+                turnBasedBehavior.EndTurn();
+                StartCoroutine(movementCountdown());
+            }
+            else if (Input.GetButton("Fire2"))
+            {
+                if (inkGauge.ink < inkSpell1Cost)
+                {
+                    Debug.Log("No More Ink");
+                    return;
+                }
+
+                animator.SetTrigger("RangedAttack");
+                playerPS.PlayUseInk();
+                playerPS.PlayUseMeleePoweredSlash();
+                inkGauge.useInk(inkSpell1Cost);
+                Attack(meleePoweredAttack);
+
+                turnBasedBehavior.EndTurn();
+                StartCoroutine(movementCountdown());
+            }
+            else if (Input.GetButton("Fire3"))
+            {
+                if (inkGauge.ink < inkSpell2Cost)
+                {
+                    Debug.Log("No More Ink");
+                    return;
+                }
+
+                animator.SetTrigger("RangedAttack");
+                playerPS.PlayUseInk();
+                playerPS.PlayInkAOE();
+                inkGauge.useInk(inkSpell2Cost);
+                aoeAttack(plusAOEAttack);
 
                 turnBasedBehavior.EndTurn();
                 StartCoroutine(movementCountdown());
@@ -125,6 +203,7 @@ public class MovePlayer : MonoBehaviour
         {
             gridItemBehavior.moveToPosition(targetPosition.x, targetPosition.y, movementTime);
             gridItemBehavior.RotateTowards(moveDirection);
+            facing = direction;
             turnBasedBehavior.EndTurn();
         }
         StartCoroutine(movementCountdown());
@@ -139,4 +218,72 @@ public class MovePlayer : MonoBehaviour
         yield return new WaitForSeconds(movementTime);
         canMove = true;
     }
+
+    void Attack(int strength)
+    {
+        switch (facing)
+        {
+            case Direction.LEFT:{
+                for(int i = 0; i < spawner.enemyList.Count; i++)
+                {
+                    Vector2Int enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                    if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x-1, gridItemBehavior.gridPosition.y)){
+                        spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
+                    }
+                }
+                break;
+            }
+            case Direction.RIGHT:{
+                for(int i = 0; i < spawner.enemyList.Count; i++)
+                {
+                    Vector2Int enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                    if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x+1, gridItemBehavior.gridPosition.y)){
+                        spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
+                    }
+                }
+                break;
+            }
+            case Direction.UP:{
+                for(int i = 0; i < spawner.enemyList.Count; i++)
+                {
+                    Vector2Int enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                    if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y+1)){
+                        spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
+                    }
+                }
+                break;
+            }
+            case Direction.DOWN:{
+                for(int i = 0; i < spawner.enemyList.Count; i++)
+                {
+                    Vector2Int enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                    if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y-1)){
+                        spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    void aoeAttack(int strength)
+    {
+        for(int i = 0; i < spawner.enemyList.Count; i++)
+            {
+                Vector2Int enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
+                if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x+1, gridItemBehavior.gridPosition.y)){
+                    spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
+                }
+                if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x-1, gridItemBehavior.gridPosition.y)){
+                    spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
+                }
+                if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y+1)){
+                    spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
+                }
+                if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y-1)){
+                    spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
+                }
+            }
+    }
+
 }

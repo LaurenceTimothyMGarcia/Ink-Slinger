@@ -10,6 +10,8 @@ public class ProceduralGeneration : MonoBehaviour
     public int roomSize = 16;
     public int numberOfRooms = 6;
 
+    public int MaxRoomAttempts = 100;
+
     bool[,] grid;
 
     List<Room> rooms;
@@ -30,9 +32,11 @@ public class ProceduralGeneration : MonoBehaviour
 
         rooms = new List<Room>();
 
-        while (rooms.Count < numberOfRooms)
+        var counter = 0;
+        while (rooms.Count < numberOfRooms && counter < MaxRoomAttempts)
         {
             AttemptAddRoom();
+            counter++;
         }
 
         hallways = new List<Hallway>();
@@ -74,7 +78,7 @@ public class ProceduralGeneration : MonoBehaviour
         // step one: choose a random node to be the initial vertex in our tree
         List<Room> connectedRooms = new List<Room>();
         connectedRooms.Add(rooms[Random.Range(0,rooms.Count)]);
-
+        
         // step 2 (repeat until done): add the lowest weight edge that connects a connected node to an unconnected node
         while(connectedRooms.Count < rooms.Count) {
             candidateHallways.Sort(compareHallways);
