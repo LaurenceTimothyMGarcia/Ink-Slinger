@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     public class EnemyPrefab {
         public EnemyType type;
         public GameObject prefab;
+        public int enemyAmount;
     }
 
     public List<EnemyPrefab> prefabs;
@@ -41,11 +42,29 @@ public class EnemySpawner : MonoBehaviour
             enemyNum = 20;
         }*/
         
+        // SpawnEnemyBatch(EnemyType.MINNOW);
+        SpawnEnemyBatch(EnemyType.SHARK);
+        SpawnEnemyBatch(EnemyType.RANGLER);
+
         // the actual number of enemies will be enemyNum * 2 (* 3 with minnow)
-        for (int i = enemyNum; i > 0; i--) {
-            SpawnEnemyRandomly(EnemyType.SHARK);
-            SpawnEnemyRandomly(EnemyType.RANGLER);
-            // SpawnEnemyRandomly(EnemyType.MINNOW);
+        // for (int i = enemyNum; i > 0; i--) {
+        //     SpawnEnemyRandomly(EnemyType.SHARK);
+        //     SpawnEnemyRandomly(EnemyType.RANGLER);
+        //     // SpawnEnemyRandomly(EnemyType.MINNOW);
+        // }
+    }
+
+    void SpawnEnemyBatch(EnemyType type)
+    {
+        EnemyPrefab currPrefab = prefabs.Find(searchPrefab => searchPrefab.type == type);
+        if(currPrefab == null || currPrefab.prefab == null) {
+            Debug.LogWarning("prefab not found; check the prefabs list and your spelling");
+            return;
+        }
+
+        for (int i = 0; i < currPrefab.enemyAmount; i++)
+        {
+            SpawnEnemyRandomly(type);
         }
     }
 

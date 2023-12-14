@@ -330,6 +330,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5669670509074895668, guid: c64dbf91fbefbbb44a99dd5244a54261,
+        type: 3}
+      propertyPath: prefabs.Array.data[0].enemyAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669670509074895668, guid: c64dbf91fbefbbb44a99dd5244a54261,
+        type: 3}
+      propertyPath: prefabs.Array.data[1].enemyAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669670509074895668, guid: c64dbf91fbefbbb44a99dd5244a54261,
+        type: 3}
+      propertyPath: prefabs.Array.data[2].enemyAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6897801725122306760, guid: c64dbf91fbefbbb44a99dd5244a54261,
         type: 3}
       propertyPath: m_LocalPosition.x
