@@ -20,7 +20,7 @@ public class GridItemBehavior : MonoBehaviour
         gridPosition.y = y;
 
         // Make the player lerp here
-        Vector3 targetPosition = gridGenerator.GetWorldPosition(gridPosition.x, gridPosition.y);
+        Vector3 targetPosition = gridGenerator.GetWorldPosition(gridPosition.x, gridPosition.y) + new Vector3(0, groundLvl, 0);
         StartCoroutine(SmoothMovement(targetPosition, movementTime));
         // transform.position = Vector3.Lerp(transform.position, gridWorldPos, 0.5f);
         // transform.position += new Vector3(0, groundLvl, 0); // temp line to position objects above grid
@@ -35,7 +35,7 @@ public class GridItemBehavior : MonoBehaviour
         while (Time.time < startTime + movementTime) {
             float distCovered = (Time.time - startTime) * journeyLength / movementTime;
             float fracJourney = distCovered / journeyLength;
-            transform.position = Vector3.Lerp(startPosition, targetPosition, fracJourney);
+            transform.position = Vector3.Lerp(startPosition, targetPosition, fracJourney) + new Vector3(0, groundLvl, 0);
             yield return null;
         }
 
@@ -68,7 +68,7 @@ public class GridItemBehavior : MonoBehaviour
 
                     GridStat targetStats = target.GetComponent<GridStat>();
 
-                    moveToPosition(targetStats.x, targetStats.y, 0);
+                    moveToPosition(targetStats.x, targetStats.y, 0.5f);
 
                     yield return new WaitForSeconds(.5f);
                 }
