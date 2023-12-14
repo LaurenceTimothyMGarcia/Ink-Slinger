@@ -678,11 +678,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InkSlinger
       objectReference: {fileID: 0}
-    - target: {fileID: 7058419504819505601, guid: 20d6c83476bf3c4468ceb8ecc7dfb20b,
-        type: 3}
-      propertyPath: movementTime
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
