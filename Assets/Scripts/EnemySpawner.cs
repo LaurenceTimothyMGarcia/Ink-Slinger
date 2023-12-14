@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public static ArrayList enemyList = new ArrayList();
+    public List<GameObject> enemyList = new List<GameObject>();
     public enum EnemyType {
         RANGLER,
         MINNOW,

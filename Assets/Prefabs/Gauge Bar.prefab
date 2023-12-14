@@ -173,7 +173,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6693711482789618905}
-  - component: {fileID: 1804829999270128920}
   m_Layer: 0
   m_Name: Gauge Bar
   m_TagString: Untagged
@@ -197,22 +196,6 @@ Transform:
   - {fileID: 1623286474936165271}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1804829999270128920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4910239855779107975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca211dff0690f5749a647ff04d0994b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inkSlider: {fileID: 5826492697380675275}
-  easeInkSlider: {fileID: 5330763466006334817}
-  maxInk: 100
-  ink: 0
 --- !u!1 &6212059316811163291
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +281,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3707605266161807867}
   - component: {fileID: 5330763466006334817}
-  - component: {fileID: 7452844304198945175}
   m_Layer: 5
   m_Name: Ease Gauge Bar
   m_TagString: Untagged
@@ -378,22 +360,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7452844304198945175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6337364030281223920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca211dff0690f5749a647ff04d0994b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inkSlider: {fileID: 5826492697380675275}
-  easeInkSlider: {fileID: 5330763466006334817}
-  maxInk: 100
-  ink: 0
 --- !u!1 &8835354211856345839
 GameObject:
   m_ObjectHideFlags: 0

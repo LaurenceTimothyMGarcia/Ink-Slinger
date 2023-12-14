@@ -5243,6 +5243,7 @@ GameObject:
   - component: {fileID: 7058419504819505601}
   - component: {fileID: 6074824581503624597}
   - component: {fileID: 7682655039506310515}
+  - component: {fileID: 7640561348451899067}
   m_Layer: 7
   m_Name: InkSlinger
   m_TagString: Player
@@ -5316,7 +5317,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8085924223744774674}
+  spawner: {fileID: 0}
   movementTime: 0.5
+  strength: 5
+  facing: 0
 --- !u!114 &6074824581503624597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5345,6 +5349,22 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   easeHealthSlider: {fileID: 0}
   maxHealth: 100
+--- !u!114 &7640561348451899067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4995302015233261417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca211dff0690f5749a647ff04d0994b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inkSlider: {fileID: 0}
+  easeInkSlider: {fileID: 0}
+  maxInk: 100
+  ink: 0
 --- !u!1 &5064212172836325190
 GameObject:
   m_ObjectHideFlags: 0
