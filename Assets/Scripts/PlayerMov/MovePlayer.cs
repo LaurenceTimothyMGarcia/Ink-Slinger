@@ -20,7 +20,9 @@ public class MovePlayer : MonoBehaviour
 
     public float movementTime = .25f; // time in seconds between each input read
 
-    public int strength = 5;
+    public int meleeAttack = 5;
+    public int meleePoweredAttack = 20;
+    public int plusAOEAttack = 15;
     public Direction facing = Direction.UP;
 
     public float inkSpell1Cost = 5f;
@@ -121,7 +123,7 @@ public class MovePlayer : MonoBehaviour
                 animator.SetTrigger("MeleeAttack");
                 playerPS.PlayUseMeleeSlash();
 
-                Attack(strength);
+                Attack(meleeAttack);
 
                 turnBasedBehavior.EndTurn();
                 StartCoroutine(movementCountdown());
@@ -138,7 +140,7 @@ public class MovePlayer : MonoBehaviour
                 playerPS.PlayUseInk();
                 playerPS.PlayUseMeleePoweredSlash();
                 inkGauge.useInk(inkSpell1Cost);
-                Attack(strength*3);
+                Attack(meleePoweredAttack);
 
                 turnBasedBehavior.EndTurn();
                 StartCoroutine(movementCountdown());
@@ -155,7 +157,7 @@ public class MovePlayer : MonoBehaviour
                 playerPS.PlayUseInk();
                 playerPS.PlayInkAOE();
                 inkGauge.useInk(inkSpell2Cost);
-                aoeAttack(strength*3);
+                aoeAttack(plusAOEAttack);
 
                 turnBasedBehavior.EndTurn();
                 StartCoroutine(movementCountdown());
