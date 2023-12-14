@@ -7,6 +7,7 @@ public class TrapdoorSpawn : MonoBehaviour
 {
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior;
+    Collider collider;
 
     public bool goLevel1;
     public bool goLevel2;
@@ -31,10 +32,29 @@ public class TrapdoorSpawn : MonoBehaviour
         gridItemBehavior.moveToPosition(x, y, 0);
     }
 
-    private void OnTriggerEnter(Collider collider)
+    void Update()
     {
+        OnTriggerEnter(collider);
+    }
+
+    // void OnCollisionEnter(Collision collision)
+    // {
+    //     Debug.Log("somethign collide");
+
+    //     if (collision.gameObject.CompareTag("Player"))
+    //     {
+    //         Debug.Log("Tag be tagging");
+    //         NextLevel();
+    //     }
+    // }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        // Debug.Log("Player entered thingy");
+
         if (collider.CompareTag("Player"))
         {
+            Debug.Log("Tag be tagging");
             NextLevel();
         }
     }
