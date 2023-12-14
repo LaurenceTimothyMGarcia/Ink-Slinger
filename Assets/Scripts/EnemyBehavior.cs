@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyBehavior : MonoBehaviour
 {
     public Animator animator;
+    public GameObject player;
+
+    public Slider healthSlider;
+    public Slider easeHealthSlider;
 
     GridItemBehavior gridItemBehavior;
-    public GameObject player;
     InkSpawner inkSpawner;
-
-    //temporary
-    GameObject healthBar;
 
     public int MaxHealth = 3;
     int health;
@@ -26,9 +27,6 @@ public class EnemyBehavior : MonoBehaviour
         //agent = GetComponent<NavMeshAgent>(); 
 
         gridItemBehavior = GetComponent<GridItemBehavior>();
-
-        // temp
-        healthBar = GameObject.FindGameObjectWithTag("HealthBar");
     }
 
     // Start is called before the first frame update
