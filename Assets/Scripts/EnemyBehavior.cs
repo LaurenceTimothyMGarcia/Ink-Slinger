@@ -75,6 +75,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public void DestroyEnemy(string enemyName)
     {
+        FindObjectOfType<AudioManager>().PlaySFX("EnemyDeath");
         Destroy(gameObject);
         inkSpawner.SpawnInk(enemyName);
     }
