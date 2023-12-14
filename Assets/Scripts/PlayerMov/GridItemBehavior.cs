@@ -15,11 +15,31 @@ public class GridItemBehavior : MonoBehaviour
         gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
     }
 
-    public void moveToPosition(int x, int y) {
+    public void moveToPosition(int x, int y, float movementTime) {
         gridPosition.x = x;
         gridPosition.y = y;
-        transform.position = gridGenerator.GetWorldPosition(gridPosition.x, gridPosition.y);
-        transform.position += new Vector3(0, groundLvl, 0); // temp line to position objects above grid
+
+        // Make the player lerp here
+        Vector3 targetPosition = gridGenerator.GetWorldPosition(gridPosition.x, gridPosition.y);
+        StartCoroutine(SmoothMovement(targetPosition, movementTime));
+        // transform.position = Vector3.Lerp(transform.position, gridWorldPos, 0.5f);
+        // transform.position += new Vector3(0, groundLvl, 0); // temp line to position objects above grid
+    }
+
+    private IEnumerator SmoothMovement(Vector3 targetPosition, float movementTime) {
+        float startTime = Time.time;
+        Vector3 startPosition = transform.position;
+        float journeyLength = Vector3.Distance(startPosition, targetPosition);
+        // float journeyTime = 0.5f; // Adjust this time as needed for the movement speed
+
+        while (Time.time < startTime + movementTime) {
+            float distCovered = (Time.time - startTime) * journeyLength / movementTime;
+            float fracJourney = distCovered / journeyLength;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, fracJourney);
+            yield return null;
+        }
+
+        transform.position = targetPosition; // Ensure reaching the exact target position
     }
 
     public void GetPathTo(Vector2Int position) {
@@ -48,7 +68,7 @@ public class GridItemBehavior : MonoBehaviour
 
                     GridStat targetStats = target.GetComponent<GridStat>();
 
-                    moveToPosition(targetStats.x, targetStats.y);
+                    moveToPosition(targetStats.x, targetStats.y, 0);
 
                     yield return new WaitForSeconds(.5f);
                 }

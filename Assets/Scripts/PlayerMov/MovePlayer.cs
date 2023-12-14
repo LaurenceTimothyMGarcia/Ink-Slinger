@@ -8,7 +8,7 @@ public class MovePlayer : MonoBehaviour
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior;
     TurnBasedBehavior turnBasedBehavior;
-    public float movementTime = .2f; // time in seconds between each input read
+    public float movementTime = .25f; // time in seconds between each input read
 
     bool canMove = true;
 
@@ -40,7 +40,7 @@ public class MovePlayer : MonoBehaviour
             {
                 if (gridGenerator.IsPositionValid(startX, startY))
                 {
-                    gridItemBehavior.moveToPosition(startX, startY);
+                    gridItemBehavior.moveToPosition(startX, startY, movementTime);
                     return;
                 }
             }
@@ -92,7 +92,6 @@ public class MovePlayer : MonoBehaviour
         {
             case Direction.LEFT: { 
                 targetPosition.x -= 1; 
-                // this.gameObject.transform.LookAt()
                 break; 
             }
             case Direction.RIGHT: { 
@@ -111,9 +110,8 @@ public class MovePlayer : MonoBehaviour
 
         if (gridGenerator.IsPositionValid(targetPosition.x, targetPosition.y))
         {
-            gridItemBehavior.moveToPosition(targetPosition.x, targetPosition.y);
+            gridItemBehavior.moveToPosition(targetPosition.x, targetPosition.y, movementTime);
             turnBasedBehavior.EndTurn();
-            StartCoroutine(movementCountdown());
         }
         StartCoroutine(movementCountdown());
     }
