@@ -74,11 +74,6 @@ public class MovePlayer : MonoBehaviour
         {
             Debug.Log("MOVE TO NEXT STATE");
 
-            if (trapdoor.GetComponent<TrapdoorSpawn>().goLevel1)
-            {
-                SceneManager.LoadScene("Titlescreen");
-            }
-
             if (trapdoor.GetComponent<TrapdoorSpawn>().goLevel2)
             {
                 SceneManager.LoadScene("Level2");
@@ -87,6 +82,11 @@ public class MovePlayer : MonoBehaviour
             if (trapdoor.GetComponent<TrapdoorSpawn>().goLevel3)
             {
                 SceneManager.LoadScene("Level3");
+            }
+
+            if (trapdoor.GetComponent<TrapdoorSpawn>().finishGame)
+            {
+                SceneManager.LoadScene("Titlescreen");
             }
         }
 
