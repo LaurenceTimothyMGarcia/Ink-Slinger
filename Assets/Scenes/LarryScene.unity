@@ -521,11 +521,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trapdoor
       objectReference: {fileID: 0}
-    - target: {fileID: 8341648577731167571, guid: 9e1ca83e4ce8e154e96717e7fc03d569,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
