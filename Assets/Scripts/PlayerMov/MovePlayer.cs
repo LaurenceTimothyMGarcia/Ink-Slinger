@@ -227,7 +227,7 @@ public class MovePlayer : MonoBehaviour
                 for(int i = 0; i < spawner.enemyList.Count; i++)
                 {
                     Vector2Int enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
-                    if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x-1, gridItemBehavior.gridPosition.y)){
+                    if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x-1, gridItemBehavior.gridPosition.y) || enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y)){
                         spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
                     }
                 }
@@ -237,7 +237,7 @@ public class MovePlayer : MonoBehaviour
                 for(int i = 0; i < spawner.enemyList.Count; i++)
                 {
                     Vector2Int enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
-                    if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x+1, gridItemBehavior.gridPosition.y)){
+                    if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x+1, gridItemBehavior.gridPosition.y) || enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y)){
                         spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
                     }
                 }
@@ -247,7 +247,7 @@ public class MovePlayer : MonoBehaviour
                 for(int i = 0; i < spawner.enemyList.Count; i++)
                 {
                     Vector2Int enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
-                    if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y+1)){
+                    if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y+1) || enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y)){
                         spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
                     }
                 }
@@ -257,7 +257,7 @@ public class MovePlayer : MonoBehaviour
                 for(int i = 0; i < spawner.enemyList.Count; i++)
                 {
                     Vector2Int enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
-                    if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y-1)){
+                    if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y-1) || enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y)){
                         spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
                     }
                 }
@@ -271,16 +271,16 @@ public class MovePlayer : MonoBehaviour
         for(int i = 0; i < spawner.enemyList.Count; i++)
             {
                 Vector2Int enemyLocation = spawner.enemyList[i].GetComponent<GridItemBehavior>().gridPosition;
-                if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x+1, gridItemBehavior.gridPosition.y)){
+                if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x+1, gridItemBehavior.gridPosition.y) || enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y)){
                     spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
                 }
-                if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x-1, gridItemBehavior.gridPosition.y)){
+                if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x-1, gridItemBehavior.gridPosition.y) || enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y)){
                     spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
                 }
-                if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y+1)){
+                if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y+1) || enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y)){
                     spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
                 }
-                if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y-1)){
+                if(enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y-1) || enemyLocation == new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y)){
                     spawner.enemyList[i].GetComponent<EnemyBehavior>().TakeDamage(strength);
                 }
             }

@@ -5,25 +5,21 @@ using UnityEngine;
 // [RequireComponent(typeof(CellularAutomata))]
 public class GridBehavior : MonoBehaviour
 {
-    public bool FindDistance = false;
     public int rows = 10;
     public int columns = 10;
     public int scale = 1;
     public GameObject gridPrefab;
     public Vector3 leftBottomLocation = new Vector3(0, 0, 0);
-    public GameObject [,] gridArray;
-    public int startX = 0;
-    public int startY = 0;
-    public int endX = 2;
-    public int endY = 2;
+    public GameObject[,] gridArray;
+
     public List<GameObject> path = new List<GameObject>();
-    
+
     // Start is called before the first frame update
     void Awake()
     {
         gridArray = new GameObject[columns, rows];
 
-        if(gridPrefab)
+        if (gridPrefab)
         {
             //GenerateGrid();
         }
@@ -34,31 +30,23 @@ public class GridBehavior : MonoBehaviour
 
     }
 
-    void Start() {
+    void Start()
+    {
         TestPCGGenerateGrid();
     }
 
-    // Update is called once per frame
-    void Update()
+    void TestPCGGenerateGrid()
     {
-        if(FindDistance)
-        {
-            SetDistance();
-            SetPath();
-            FindDistance = false;
-        }
-    }
-
-    void TestPCGGenerateGrid() {
         bool[,] cellGrid = GetComponent<ProceduralGeneration>().GetGrid();
 
-        for(int i = 0; i < rows; i++)
+        for (int i = 0; i < rows; i++)
         {
-            for(int j = 0; j < columns; j++)
+            for (int j = 0; j < columns; j++)
             {
-                if(cellGrid[i,j]) {
+                if (cellGrid[i, j])
+                {
                     GameObject obj = Instantiate(
-                                        gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 
+                                        gridPrefab, new Vector3(leftBottomLocation.x + scale * i,
                                         leftBottomLocation.y, leftBottomLocation.z + scale * j), Quaternion.identity);
                     obj.transform.SetParent(gameObject.transform);
                     obj.GetComponent<GridStat>().x = i;
@@ -70,219 +58,130 @@ public class GridBehavior : MonoBehaviour
         }
     }
 
-    void InitialSetUp()
+    public bool IsPositionValid(int x, int y)
     {
-        foreach (GameObject obj in gridArray)
-        {
-            if(obj)
-                obj.GetComponent<GridStat>().visited = -1; //Everything on grid is -1
-        }
-
-        gridArray[startX, startY].GetComponent<GridStat>().visited = 0; //0 is starting point
-    }
-
-    bool TestDirection(int x, int y, int step, int direction)
-    {
-        //Which case to use: 1 = up, 2 = right, 3 = down, 4 = left
-        switch(direction)
-        {
-            case 4:
-                if(x-1 > -1 && gridArray[x-1, y] && gridArray[x-1, y].GetComponent<GridStat>().visited == step)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case 3:
-                if(y-1 > -1 && gridArray[x, y-1] && gridArray[x, y-1].GetComponent<GridStat>().visited == step)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case 2:
-                if(x+1 < columns && gridArray[x+1, y] && gridArray[x+1, y].GetComponent<GridStat>().visited == step)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case 1:
-                if(y+1 < rows && gridArray[x, y+1] && gridArray[x, y+1].GetComponent<GridStat>().visited == step)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-        }
-        return false;
-    }
-
-    void SetVisited(int x, int y, int step)
-    {
-        if(gridArray[x,y])
-        {
-            gridArray[x,y].GetComponent<GridStat>().visited = step;
-        }
-    }
-
-    public void SetDistance()
-    {
-        InitialSetUp();
-        int x = startX;
-        int y = startY;
-        int [] testArray = new int [rows * columns];
-
-        for(int step = 1; step < rows*columns; step++)
-        {
-            foreach(GameObject obj in gridArray)
-            {
-                if(obj && obj.GetComponent<GridStat>().visited == step - 1)
-                {
-                    TestFourDirections(obj.GetComponent<GridStat>().x, obj.GetComponent<GridStat>().y, step);
-                }
-            }
-        }
-    }
-
-    void TestFourDirections(int x, int y, int step)
-    {
-        //If node is -1, set it to the new step
-        if(TestDirection(x, y, -1, 1))
-        {
-            SetVisited(x, y + 1, step);
-        }
-        if(TestDirection(x, y, -1, 2))
-        {
-            SetVisited(x + 1, y, step);
-        }
-        if(TestDirection(x, y, -1, 3))
-        {
-            SetVisited(x, y - 1, step);
-        }
-        if(TestDirection(x, y, - 1, 4))
-        {
-            SetVisited(x - 1, y, step);
-        }
-    }
-
-    //changed the protection level of the below three functions
-    //and added set functions
-
-    public void setStartX(int x)
-    {
-        startX = x;
-    }
-
-    public void setStartY(int y)
-    {
-        startY = y;
-    }
-
-    public void setEndX(int x)
-    {
-        endX = x;
-    }
-
-    public void setEndY(int y)
-    {
-        endY = y;
-    }
-
-    public void SetPath()
-    {
-        int step;
-        int x = endX;
-        int y = endY;
-        List<GameObject> tempList = new List<GameObject>();
-
-        path.Clear();
-        if(gridArray[endX, endY] && gridArray[endX, endY].GetComponent<GridStat>().visited > 0)
-        {
-            path.Add(gridArray[x, y]);
-            step = gridArray[x, y].GetComponent<GridStat>().visited - 1;
-        }
-        else
-        {
-            print("Can't reach desired location.");
-            return;
-        }
-
-        for(int i = step; step > -1; step--)
-        {
-            if(TestDirection(x, y, step, 1))
-            {
-                tempList.Add(gridArray[x, y+1]);
-            }
-            if(TestDirection(x, y, step, 2))
-            {
-                tempList.Add(gridArray[x+1, y]);
-            }
-            if(TestDirection(x, y, step, 3))
-            {
-                tempList.Add(gridArray[x, y-1]);
-            }
-            if(TestDirection(x, y, step, 4))
-            {
-                tempList.Add(gridArray[x-1, y]);
-            }
-
-            GameObject tempObj = FindClosest(gridArray[endX, endY].transform, tempList);
-            path.Add(tempObj);
-            x = tempObj.GetComponent<GridStat>().x;
-            y = tempObj.GetComponent<GridStat>().y;
-            tempList.Clear();
-        }
-    }
-
-    GameObject FindClosest(Transform targetLocation, List<GameObject> list)
-    {
-        float currentDistance = scale * rows * columns;
-        int indexNumber = 0;
-
-        for(int i = 0; i < list.Count; i++)
-        {
-            if(Vector3.Distance(targetLocation.position, list[i].transform.position) < currentDistance)
-            {
-                currentDistance = Vector3.Distance(targetLocation.position, list[i].transform.position);
-                indexNumber = i;
-            }
-        }
-
-        return list[indexNumber];
-    }
-
-    public bool IsPositionValid(int x, int y) {
         // this if statement checks if the position is in bounds for the array
         // just because of a couple annoying errors spamming the console
-        if(x < 0 || y < 0 || x >= gridArray.Length || y >= gridArray.GetLength(0)) {
+        if (x < 0 || y < 0 || x >= gridArray.Length || y >= gridArray.GetLength(0))
+        {
             return false;
         }
-        if(gridArray[x,y]) {
+        if (gridArray[x, y])
+        {
             return true;
         }
         return false;
     }
 
-    public Vector3 GetWorldPosition(int x, int y) {
-        if(gridArray[x,y]) {
-            return gridArray[x,y].transform.position;
+    public Vector3 GetWorldPosition(int x, int y)
+    {
+        if (gridArray[x, y])
+        {
+            return gridArray[x, y].transform.position;
         }
-        else {
+        else
+        {
             return Vector3.zero;
         }
     }
 
+    public Vector2Int GetRandomValidPosition() {
+        int x = Random.Range(0, gridArray.GetLength(0) - 1), y = Random.Range(0, gridArray.GetLength(1) - 1);
+        while(gridArray[x,y] == null) {
+            x = Random.Range(0, gridArray.GetLength(0) - 1);
+            y = Random.Range(0, gridArray.GetLength(1) - 1);
+        }
 
-    
+        return new Vector2Int(x,y);
+    }
+
+    int GetDistance(int x1, int y1, int x2, int y2)
+    {
+        return (Mathf.Abs(x1 - x2) + Mathf.Abs(y1 - y2));
+    }
+
+    public List<GameObject> GetPath(int x1, int y1, int x2, int y2)
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if(gridArray[i,j] != null) {
+                gridArray[i,j].GetComponent<GridStat>().currentCost = -1;
+                gridArray[i,j].GetComponent<GridStat>().sumValue = -1;
+                gridArray[i,j].GetComponent<GridStat>().distanceFromDestination = -1;
+                gridArray[i,j].GetComponent<GridStat>().parent = null;}
+            }
+        }
+
+        List<GameObject> outPath = new List<GameObject>();
+
+        List<GameObject> weirdFuckingPriorityQueue = new List<GameObject>();
+
+        GameObject startLocation = gridArray[x1, y1];
+        startLocation.GetComponent<GridStat>().currentCost = 0;
+        startLocation.GetComponent<GridStat>().distanceFromDestination = GetDistance(x1, y1, x2, y2);
+        startLocation.GetComponent<GridStat>().sumValue = GetDistance(x1, y1, x2, y2);
+
+        weirdFuckingPriorityQueue.Add(startLocation);
+
+        List<GameObject> visited = new List<GameObject>();
+
+        while(true)
+        {
+            // get the best node
+            GameObject best = weirdFuckingPriorityQueue[0];
+            int lowestHeuristic = best.GetComponent<GridStat>().sumValue;
+            int bestIndex = 0;
+
+            for (int i = 0; i < weirdFuckingPriorityQueue.Count; i++)
+            {
+                if (weirdFuckingPriorityQueue[i].GetComponent<GridStat>().sumValue < lowestHeuristic)
+                {
+                    lowestHeuristic = weirdFuckingPriorityQueue[i].GetComponent<GridStat>().sumValue;
+                    bestIndex = i;
+                }
+            }
+
+            best = weirdFuckingPriorityQueue[bestIndex];
+
+            weirdFuckingPriorityQueue.Remove(best);
+            visited.Add(best);
+
+
+            if (best.GetComponent<GridStat>().x == x2 && best.GetComponent<GridStat>().y == y2)
+            {
+                // we are done
+                GameObject currentlyRetracedNode = best;
+                while (currentlyRetracedNode.GetComponent<GridStat>().parent != null)
+                {
+                    outPath.Add(currentlyRetracedNode);
+                    currentlyRetracedNode = currentlyRetracedNode.GetComponent<GridStat>().parent;
+                }
+                break;
+            }
+
+            Vector2Int bestPosition = new Vector2Int(best.GetComponent<GridStat>().x, best.GetComponent<GridStat>().y);
+            // best has (up to) four neighbors: above, below, right and left
+            Vector2Int[] neighbors = { bestPosition + Vector2Int.down, bestPosition + Vector2Int.up, bestPosition + Vector2Int.left, bestPosition + Vector2Int.right };
+            foreach (Vector2Int neighborPosition in neighbors)
+            {
+                GameObject neighbor = gridArray[neighborPosition.x, neighborPosition.y];
+                if (neighbor != null && !visited.Contains(neighbor))
+                {
+                    neighbor.GetComponent<GridStat>().currentCost = best.GetComponent<GridStat>().currentCost + 1;
+                    neighbor.GetComponent<GridStat>().distanceFromDestination = GetDistance(neighborPosition.x, neighborPosition.y, x2, y2);
+                    neighbor.GetComponent<GridStat>().sumValue = neighbor.GetComponent<GridStat>().distanceFromDestination + neighbor.GetComponent<GridStat>().currentCost;
+                    neighbor.GetComponent<GridStat>().parent = best;
+
+                    if (!weirdFuckingPriorityQueue.Contains(neighbor)) weirdFuckingPriorityQueue.Add(neighbor);
+                }
+            }
+        }
+
+        return outPath;
+    }
+
     // void GenerateGrid()
     // {
     //     for(int i = 0; i < columns; i++)

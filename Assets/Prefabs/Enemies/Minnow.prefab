@@ -2141,7 +2141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8de6a9f3ae514745b9c82c0cfaa9d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLvl: 0
+  groundLvl: 1
   gridPosition: {x: 0, y: 0}
 --- !u!114 &3203745691996711308
 MonoBehaviour:
@@ -2167,7 +2167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59967684b0784c43824cb9e3a41438f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 7276876286715313141}
   player: {fileID: 0}
   healthSlider: {fileID: 9115441034659752048}
   easeHealthSlider: {fileID: 7520041729751066161}

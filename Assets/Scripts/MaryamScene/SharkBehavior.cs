@@ -18,6 +18,8 @@ public class SharkBehavior : MonoBehaviour
     public int AggroRange = 6;
     public float movementTime = 0.5f;
 
+    Vector2Int PatrolTarget;
+
     bool aggro = false;
     
     // temp movement stuff
@@ -28,7 +30,11 @@ public class SharkBehavior : MonoBehaviour
         enemyBehavior = GetComponent<EnemyBehavior>();
         gridItemBehavior = GetComponent<GridItemBehavior>();
 
+    }
 
+    void Start() {
+        
+        PatrolTarget = gridItemBehavior.getRandomPosition();
     }
 
     void Update() {
@@ -67,14 +73,9 @@ public class SharkBehavior : MonoBehaviour
     }
 
     void PatrolMovement() {
-        // really sorry for this line of code
-        // the ternary operator is here to change which direction is checked
-        // this code determines if the cell in the direction the shark is traveling is valid
-        // if it isn't, the shark turns around
-        if(!GameObject.Find("GridGenerator").GetComponent<GridBehavior>().IsPositionValid(gridItemBehavior.gridPosition.x + (movingRight ? 1 : -1)  , gridItemBehavior.gridPosition.y)) {
-            movingRight = !movingRight;
+        if(PatrolTarget == null || gridItemBehavior.gridPosition == PatrolTarget) {
+            PatrolTarget = gridItemBehavior.getRandomPosition();
         }
-
-        gridItemBehavior.moveToPosition(gridItemBehavior.gridPosition.x + (movingRight ? 1 : -1), gridItemBehavior.gridPosition.y, movementTime);
+        enemyBehavior.GoTo(PatrolTarget, 1);
     }
 }

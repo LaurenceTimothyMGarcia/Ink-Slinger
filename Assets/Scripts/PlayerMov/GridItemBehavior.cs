@@ -26,6 +26,10 @@ public class GridItemBehavior : MonoBehaviour
         // transform.position += new Vector3(0, groundLvl, 0); // temp line to position objects above grid
     }
 
+    public Vector2Int getRandomPosition() {
+        return gridGenerator.GetRandomValidPosition();
+    }
+
     private IEnumerator SmoothMovement(Vector3 targetPosition, float movementTime) {
         float startTime = Time.time;
         Vector3 startPosition = transform.position;
@@ -59,15 +63,9 @@ public class GridItemBehavior : MonoBehaviour
         GetPathTo(position.x, position.y);
     }
     public void GetPathTo(int x, int y) {
-        gridGenerator.setStartX(gridPosition.x);
-        gridGenerator.setStartY(gridPosition.y);
-        gridGenerator.setEndX(x);
-        gridGenerator.setEndY(y);
-        //gridGenerator.SetDistance();
-        //gridGenerator.SetPath();
 
         // get a shallow clone of the gridgenerator's path
-        this.path = new Stack<GameObject>(gridGenerator.path);
+        this.path = new Stack<GameObject>(gridGenerator.GetPath(gridPosition.x, gridPosition.y, x, y));
         
     }
 
