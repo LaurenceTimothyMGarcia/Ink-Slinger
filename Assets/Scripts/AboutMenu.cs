@@ -7,6 +7,7 @@ public class AboutMenu : MonoBehaviour
 {
     public GameObject aboutGame;
     public GameObject howToPlay;
+    public GameObject surpise;
 
 
     // Start is called before the first frame update
@@ -14,18 +15,27 @@ public class AboutMenu : MonoBehaviour
     {
         aboutGame.SetActive(true);
         howToPlay.SetActive(false);
+        surpise.SetActive(false);
     }
 
     public void LoadAboutGame()
     {
         aboutGame.SetActive(true);
         howToPlay.SetActive(false);
+        surpise.SetActive(false);
     }
 
     public void LoadHowToPlay()
     {
         aboutGame.SetActive(false);
         howToPlay.SetActive(true);
+        surpise.SetActive(false);
+    }
+    public void LoadSurprise()
+    {
+        aboutGame.SetActive(false);
+        howToPlay.SetActive(false);
+        surpise.SetActive(true);
     }
 
 }
