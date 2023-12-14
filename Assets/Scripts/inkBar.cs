@@ -39,6 +39,28 @@ public class inkBar : MonoBehaviour
 
     public void useInk(float spellCost)
     {
-        ink -= spellCost;
+        if (ink > 0)
+        {
+            ink -= spellCost;
+        }
+        
+        if (ink < 0)
+        {
+            ink = 0;
+        }
+    }
+
+    public void gainInk(float inkGained)
+    {
+        if (ink < maxInk)
+        {
+            ink += inkGained;
+        }
+
+        if (ink > maxInk)
+        {
+            ink = maxInk;
+        }
+        
     }
 }

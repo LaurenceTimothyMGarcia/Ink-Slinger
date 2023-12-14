@@ -109,6 +109,8 @@ public class MovePlayer : MonoBehaviour
             {
                 // temporary; skip your turn
                 //Debug.Log("turn skipped");
+                animator.SetTrigger("MeleeAttack");
+
                 Attack(strength);
 
                 turnBasedBehavior.EndTurn();
@@ -116,6 +118,7 @@ public class MovePlayer : MonoBehaviour
             }
             else if (Input.GetButton("Fire2"))
             {
+                animator.SetTrigger("RangedAttack");
                 Attack(strength*3);
 
                 turnBasedBehavior.EndTurn();
@@ -123,6 +126,7 @@ public class MovePlayer : MonoBehaviour
             }
             else if (Input.GetButton("Fire3"))
             {
+                animator.SetTrigger("RangedAttack");
                 aoeAttack(strength*3);
 
                 turnBasedBehavior.EndTurn();

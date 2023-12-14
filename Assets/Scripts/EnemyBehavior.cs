@@ -11,6 +11,8 @@ public class EnemyBehavior : MonoBehaviour
     public Slider healthSlider;
     public Slider easeHealthSlider;
 
+    public GameObject inkPuddle;
+
     GridItemBehavior gridItemBehavior;
     InkSpawner inkSpawner;
 
@@ -79,8 +81,10 @@ public class EnemyBehavior : MonoBehaviour
 
     public void DestroyEnemy(string enemyName)
     {
-        FindObjectOfType<AudioManager>().PlaySFX("EnemyDeath");
+        // FindObjectOfType<AudioManager>().PlaySFX("EnemyDeath");
+        // inkSpawner.SpawnInk(enemyName);
+        GameObject iPuddle = Instantiate(inkPuddle);
+        iPuddle.GetComponent<GridItemBehavior>().gridPosition = new Vector2Int(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y);
         Destroy(gameObject);
-        inkSpawner.SpawnInk(enemyName);
     }
 }

@@ -3815,7 +3815,9 @@ MonoBehaviour:
   player: {fileID: 0}
   healthSlider: {fileID: 3765397849432165726}
   easeHealthSlider: {fileID: 2494257707895767839}
-  MaxHealth: 3
+  inkPuddle: {fileID: 6999085877514920928, guid: 2aa329ec9d3ce9943872c0eb61a675c4,
+    type: 3}
+  MaxHealth: 10
 --- !u!1 &6145274216719647718
 GameObject:
   m_ObjectHideFlags: 0
