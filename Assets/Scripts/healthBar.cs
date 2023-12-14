@@ -23,21 +23,22 @@ public class healthBar : MonoBehaviour
         {
             healthSlider.value = health;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            takeDamage(10);
-        }
+        //testing purposes
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     takeDamage(10);
+        // }
 
         if (healthSlider.value != easeHealthSlider.value)
         {
             easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, health, lerpSpeed);
         }
 
-        
+
     }
 
     public void takeDamage(float damage)
-        {
-            health -= damage;
-        }
+    {
+        health -= damage;
+    }
 }
