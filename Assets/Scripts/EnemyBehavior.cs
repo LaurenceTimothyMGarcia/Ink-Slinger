@@ -26,7 +26,7 @@ public class EnemyBehavior : MonoBehaviour
         gridItemBehavior = GetComponent<GridItemBehavior>();
 
         // temp
-        healthBar = GameObject.Find("Health Bar");
+        healthBar = GameObject.FindGameObjectWithTag("HealthBar");
     }
 
     // Start is called before the first frame update
@@ -41,12 +41,14 @@ public class EnemyBehavior : MonoBehaviour
         StartCoroutine(gridItemBehavior.MoveOnPath(TileSpeed));
     }
 
-    public bool PlayerInRange(int range) {
+    public bool PlayerInRange(int range)
+    {
         Vector2Int distanceVector = gridItemBehavior.gridPosition - player.GetComponent<GridItemBehavior>().gridPosition;
         return (Mathf.Abs(distanceVector.x) + Mathf.Abs(distanceVector.y)) <= range;
     }
 
-    public void HurtPlayer(int amount) {
+    public void HurtPlayer(int amount)
+    {
         healthBar.GetComponent<healthBar>().takeDamage(amount);
     }
 
