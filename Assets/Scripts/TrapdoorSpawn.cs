@@ -32,11 +32,6 @@ public class TrapdoorSpawn : MonoBehaviour
         gridItemBehavior.moveToPosition(x, y, 0);
     }
 
-    void Update()
-    {
-        OnTriggerEnter(collider);
-    }
-
     // void OnCollisionEnter(Collision collision)
     // {
     //     Debug.Log("somethign collide");
