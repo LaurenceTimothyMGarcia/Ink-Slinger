@@ -51,13 +51,14 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire2")) {
+        if (Input.GetButtonDown("Fire2"))
+        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         float xDirection = Input.GetAxis("Horizontal");
         float yDirection = Input.GetAxis("Vertical");
 
-        if (canMove && turnBasedBehavior.TurnStarted())
+        if (canMove && turnBasedBehavior.TurnStarted() && !PauseMenu.isPaused)
         {
             if (Input.GetButton("Down"))
             {
@@ -94,26 +95,30 @@ public class MovePlayer : MonoBehaviour
         // select target grid position depending on inputted direction
         switch (direction)
         {
-            case Direction.LEFT: { 
-                targetPosition.x -= 1; 
-                moveDirection = Vector3.left;
-                break; 
-            }
-            case Direction.RIGHT: { 
-                targetPosition.x += 1; 
-                moveDirection = Vector3.right;
-                break; 
-            }
-            case Direction.UP: { 
-                targetPosition.y += 1; 
-                moveDirection = Vector3.forward;
-                break; 
-            }
-            case Direction.DOWN: { 
-                targetPosition.y -= 1; 
-                moveDirection = Vector3.back;
-                break; 
-            }
+            case Direction.LEFT:
+                {
+                    targetPosition.x -= 1;
+                    moveDirection = Vector3.left;
+                    break;
+                }
+            case Direction.RIGHT:
+                {
+                    targetPosition.x += 1;
+                    moveDirection = Vector3.right;
+                    break;
+                }
+            case Direction.UP:
+                {
+                    targetPosition.y += 1;
+                    moveDirection = Vector3.forward;
+                    break;
+                }
+            case Direction.DOWN:
+                {
+                    targetPosition.y -= 1;
+                    moveDirection = Vector3.back;
+                    break;
+                }
         }
 
         if (gridGenerator.IsPositionValid(targetPosition.x, targetPosition.y))
