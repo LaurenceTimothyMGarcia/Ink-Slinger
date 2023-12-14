@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee10e9c3f3964d34a82ce73298c52892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stairCase: {fileID: 2104580524511954402, guid: d9ddc1918a014af45a407ebe84cbe762,
+  stairCase: {fileID: 7000819812658576131, guid: 9e1ca83e4ce8e154e96717e7fc03d569,
     type: 3}
   collider: {fileID: 5919075437433915213, guid: 1f4cb3ec9cef8f64a9916a3bb89f1305,
     type: 3}

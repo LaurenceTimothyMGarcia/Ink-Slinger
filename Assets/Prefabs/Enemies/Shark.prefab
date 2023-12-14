@@ -3663,11 +3663,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae72b17f39d3a243a8de79c096986ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 3470946285151060670}
   AttackRange: 1
   DamageAmount: 10
   MovementSpeed: 1
   AggroActions: 2
   AggroRange: 6
+  movementTime: 0.5
 --- !u!114 &6786059043177515439
 MonoBehaviour:
   m_ObjectHideFlags: 0

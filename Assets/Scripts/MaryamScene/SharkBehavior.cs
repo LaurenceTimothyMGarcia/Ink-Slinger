@@ -9,11 +9,14 @@ public class SharkBehavior : MonoBehaviour
     GridItemBehavior gridItemBehavior;
     EnemyBehavior enemyBehavior;
 
+    public Animator animator;
+
     public int AttackRange = 1;
     public int DamageAmount = 10;
     public int MovementSpeed = 1;
     public int AggroActions = 2;
     public int AggroRange = 6;
+    public float movementTime = 0.5f;
 
     bool aggro = false;
     
@@ -71,6 +74,6 @@ public class SharkBehavior : MonoBehaviour
             movingRight = !movingRight;
         }
 
-        gridItemBehavior.moveToPosition(gridItemBehavior.gridPosition.x + (movingRight ? 1 : -1), gridItemBehavior.gridPosition.y);
+        gridItemBehavior.moveToPosition(gridItemBehavior.gridPosition.x + (movingRight ? 1 : -1), gridItemBehavior.gridPosition.y, movementTime);
     }
 }
