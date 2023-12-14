@@ -136,6 +136,7 @@ public class MovePlayer : MonoBehaviour
 
                 animator.SetTrigger("RangedAttack");
                 playerPS.PlayUseInk();
+                playerPS.PlayUseMeleePoweredSlash();
                 inkGauge.useInk(inkSpell1Cost);
                 Attack(strength*3);
 
@@ -152,6 +153,7 @@ public class MovePlayer : MonoBehaviour
 
                 animator.SetTrigger("RangedAttack");
                 playerPS.PlayUseInk();
+                playerPS.PlayInkAOE();
                 inkGauge.useInk(inkSpell2Cost);
                 aoeAttack(strength*3);
 
