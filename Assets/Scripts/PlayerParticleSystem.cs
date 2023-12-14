@@ -6,6 +6,7 @@ public class PlayerParticleSystem : MonoBehaviour
 {
     public ParticleSystem absorbInk;
     public ParticleSystem useInk;
+    public ParticleSystem meleeSlash;
 
     public void PlayAbsorbInk()
     {
@@ -15,5 +16,10 @@ public class PlayerParticleSystem : MonoBehaviour
     public void PlayUseInk()
     {
         useInk.Play();
+    }
+
+    public void PlayUseMeleeSlash()
+    {
+        meleeSlash.Play();
     }
 }

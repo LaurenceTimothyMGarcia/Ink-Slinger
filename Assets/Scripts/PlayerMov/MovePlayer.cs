@@ -119,6 +119,7 @@ public class MovePlayer : MonoBehaviour
                 // temporary; skip your turn
                 //Debug.Log("turn skipped");
                 animator.SetTrigger("MeleeAttack");
+                playerPS.PlayUseMeleeSlash();
 
                 Attack(strength);
 
