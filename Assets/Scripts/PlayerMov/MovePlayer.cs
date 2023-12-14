@@ -14,12 +14,17 @@ public class MovePlayer : MonoBehaviour
     TurnBasedBehavior turnBasedBehavior;
     PlayerParticleSystem playerPS;
 
+    inkBar inkGauge;
+
     GameObject trapdoor;
 
     public float movementTime = .25f; // time in seconds between each input read
 
     public int strength = 5;
     public Direction facing = Direction.UP;
+
+    public float inkSpell1Cost = 5f;
+    public float inkSpell2Cost = 10f;
 
     bool canMove = true;
 
@@ -37,6 +42,7 @@ public class MovePlayer : MonoBehaviour
         gridItemBehavior = GetComponent<GridItemBehavior>();
         turnBasedBehavior = GetComponent<TurnBasedBehavior>();
         playerPS = GetComponent<PlayerParticleSystem>();
+        inkGauge = GetComponent<inkBar>();
         spawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawner>();
 
         trapdoor = GameObject.FindGameObjectWithTag("Trapdoor");
@@ -121,8 +127,15 @@ public class MovePlayer : MonoBehaviour
             }
             else if (Input.GetButton("Fire2"))
             {
+                if (inkGauge.ink < inkSpell1Cost)
+                {
+                    Debug.Log("No More Ink");
+                    return;
+                }
+
                 animator.SetTrigger("RangedAttack");
                 playerPS.PlayUseInk();
+                inkGauge.useInk(inkSpell1Cost);
                 Attack(strength*3);
 
                 turnBasedBehavior.EndTurn();
@@ -130,8 +143,15 @@ public class MovePlayer : MonoBehaviour
             }
             else if (Input.GetButton("Fire3"))
             {
+                if (inkGauge.ink < inkSpell2Cost)
+                {
+                    Debug.Log("No More Ink");
+                    return;
+                }
+
                 animator.SetTrigger("RangedAttack");
                 playerPS.PlayUseInk();
+                inkGauge.useInk(inkSpell2Cost);
                 aoeAttack(strength*3);
 
                 turnBasedBehavior.EndTurn();
