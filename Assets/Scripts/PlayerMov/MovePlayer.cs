@@ -113,6 +113,7 @@ public class MovePlayer : MonoBehaviour
         {
             gridItemBehavior.moveToPosition(targetPosition.x, targetPosition.y);
             turnBasedBehavior.EndTurn();
+            StartCoroutine(movementCountdown());
         }
         StartCoroutine(movementCountdown());
     }

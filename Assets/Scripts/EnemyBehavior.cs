@@ -6,6 +6,7 @@ public class EnemyBehavior : MonoBehaviour
 {
     GridItemBehavior gridItemBehavior;
     public GameObject player;
+    InkSpawner inkSpawner;
 
     //temporary
     GameObject healthBar;
@@ -49,9 +50,9 @@ public class EnemyBehavior : MonoBehaviour
         healthBar.GetComponent<healthBar>().takeDamage(amount);
     }
 
-    public void DestroyEnemy()
+    public void DestroyEnemy(string enemyName)
     {
         Destroy(gameObject);
-        //possibly create ink puddle here as well
+        inkSpawner.SpawnInk(enemyName);
     }
 }
