@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         Debug.Log("Go to game");
-        SceneManager.LoadScene("ProtoTypeBuild");
+        SceneManager.LoadScene("LarryScene");
     }
 
     public void QuitGame()
