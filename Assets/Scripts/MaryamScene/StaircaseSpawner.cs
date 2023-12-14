@@ -28,7 +28,7 @@ public class StaircaseSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.name == "Player")
+        if (collider.CompareTag("Player"))
         {
             NextLevel();
         }
@@ -37,8 +37,8 @@ public class StaircaseSpawner : MonoBehaviour
     public void SpawnStairs()
     {
         //Vector3 playerPos = gridGenerator.GetWorldPosition((int)GameObject.Find("Player").transform.position.x, (int)GameObject.Find("Player").transform.position.y);
-        float playerX = GameObject.Find("Player").transform.position.x;
-        float playerZ = GameObject.Find("Player").transform.position.z;
+        float playerX = GameObject.FindGameObjectWithTag("Player").transform.position.x;
+        float playerZ = GameObject.FindGameObjectWithTag("Player").transform.position.z;
 
         int x = Random.Range(0, gridGenerator.gridArray.GetLength(0) - 1), z = Random.Range(0, gridGenerator.gridArray.GetLength(1) - 1);
 
@@ -88,7 +88,7 @@ public class StaircaseSpawner : MonoBehaviour
         //SceneManager.LoadScene("ProtoTypeBuild");
         if (goLevel1)
         {
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Titlescreen");
         }
 
         if (goLevel2)
