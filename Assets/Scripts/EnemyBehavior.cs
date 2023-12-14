@@ -84,6 +84,11 @@ public class EnemyBehavior : MonoBehaviour
         StartCoroutine(gridItemBehavior.MoveOnPath(TileSpeed));
     }
 
+    public void GoTo(Vector2Int targetPos, int TileSpeed) {
+        gridItemBehavior.GetPathTo(targetPos);
+        StartCoroutine(gridItemBehavior.MoveOnPath(TileSpeed));
+    }
+
     public bool PlayerInRange(int range)
     {
         Vector2Int distanceVector = gridItemBehavior.gridPosition - player.GetComponent<GridItemBehavior>().gridPosition;

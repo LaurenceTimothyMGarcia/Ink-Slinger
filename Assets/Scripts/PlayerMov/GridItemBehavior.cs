@@ -26,6 +26,10 @@ public class GridItemBehavior : MonoBehaviour
         // transform.position += new Vector3(0, groundLvl, 0); // temp line to position objects above grid
     }
 
+    public Vector2Int getRandomPosition() {
+        return gridGenerator.GetRandomValidPosition();
+    }
+
     private IEnumerator SmoothMovement(Vector3 targetPosition, float movementTime) {
         float startTime = Time.time;
         Vector3 startPosition = transform.position;
