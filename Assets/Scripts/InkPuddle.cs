@@ -27,6 +27,7 @@ public class InkPuddle : MonoBehaviour
         if (player.GetComponent<GridItemBehavior>().gridPosition == gridItemBehavior.gridPosition)
         {
             player.GetComponent<inkBar>().gainInk(inkGain);
+            player.GetComponent<PlayerParticleSystem>().PlayAbsorbInk();
             Destroy(this.gameObject);
         }
     }

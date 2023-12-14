@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 public class MovePlayer : MonoBehaviour
 {
     public Animator animator;
-    
+
     EnemySpawner spawner;
 
     GridBehavior gridGenerator;
     GridItemBehavior gridItemBehavior;
     TurnBasedBehavior turnBasedBehavior;
+    PlayerParticleSystem playerPS;
 
     GameObject trapdoor;
 
@@ -35,6 +36,7 @@ public class MovePlayer : MonoBehaviour
         gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
         gridItemBehavior = GetComponent<GridItemBehavior>();
         turnBasedBehavior = GetComponent<TurnBasedBehavior>();
+        playerPS = GetComponent<PlayerParticleSystem>();
         spawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawner>();
 
         trapdoor = GameObject.FindGameObjectWithTag("Trapdoor");
@@ -120,6 +122,7 @@ public class MovePlayer : MonoBehaviour
             else if (Input.GetButton("Fire2"))
             {
                 animator.SetTrigger("RangedAttack");
+                playerPS.PlayUseInk();
                 Attack(strength*3);
 
                 turnBasedBehavior.EndTurn();
@@ -128,6 +131,7 @@ public class MovePlayer : MonoBehaviour
             else if (Input.GetButton("Fire3"))
             {
                 animator.SetTrigger("RangedAttack");
+                playerPS.PlayUseInk();
                 aoeAttack(strength*3);
 
                 turnBasedBehavior.EndTurn();
