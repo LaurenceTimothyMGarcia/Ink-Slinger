@@ -49,45 +49,6 @@ public class GridBehavior : MonoBehaviour
         }
     }
 
-    void GenerateGrid()
-    {
-        for(int i = 0; i < columns; i++)
-        {
-            for(int j = 0; j < rows; j++)
-            {
-                GameObject obj = Instantiate(
-                                    gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 
-                                    leftBottomLocation.y, leftBottomLocation.z + scale * j), Quaternion.identity);
-                obj.transform.SetParent(gameObject.transform);
-                obj.GetComponent<GridStat>().x = i;
-                obj.GetComponent<GridStat>().y = j;
-
-                gridArray[i, j] = obj;
-            }
-        }
-    }
-
-    void TestCAGenerateGrid() {
-        bool[,] cellGrid = GetComponent<CellularAutomata>().GetGrid();
-
-        for(int i = 0; i < rows; i++)
-        {
-            for(int j = 0; j < columns; j++)
-            {
-                if(cellGrid[i,j]) {
-                    GameObject obj = Instantiate(
-                                        gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 
-                                        leftBottomLocation.y, leftBottomLocation.z + scale * j), Quaternion.identity);
-                    obj.transform.SetParent(gameObject.transform);
-                    obj.GetComponent<GridStat>().x = i;
-                    obj.GetComponent<GridStat>().y = j;
-
-                    gridArray[i, j] = obj;
-                }
-            }
-        }
-    }
-
     void TestPCGGenerateGrid() {
         bool[,] cellGrid = GetComponent<ProceduralGeneration>().GetGrid();
 
@@ -319,4 +280,45 @@ public class GridBehavior : MonoBehaviour
             return Vector3.zero;
         }
     }
+
+
+    
+    // void GenerateGrid()
+    // {
+    //     for(int i = 0; i < columns; i++)
+    //     {
+    //         for(int j = 0; j < rows; j++)
+    //         {
+    //             GameObject obj = Instantiate(
+    //                                 gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 
+    //                                 leftBottomLocation.y, leftBottomLocation.z + scale * j), Quaternion.identity);
+    //             obj.transform.SetParent(gameObject.transform);
+    //             obj.GetComponent<GridStat>().x = i;
+    //             obj.GetComponent<GridStat>().y = j;
+
+    //             gridArray[i, j] = obj;
+    //         }
+    //     }
+    // }
+
+    // void TestCAGenerateGrid() {
+    //     bool[,] cellGrid = GetComponent<CellularAutomata>().GetGrid();
+
+    //     for(int i = 0; i < rows; i++)
+    //     {
+    //         for(int j = 0; j < columns; j++)
+    //         {
+    //             if(cellGrid[i,j]) {
+    //                 GameObject obj = Instantiate(
+    //                                     gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 
+    //                                     leftBottomLocation.y, leftBottomLocation.z + scale * j), Quaternion.identity);
+    //                 obj.transform.SetParent(gameObject.transform);
+    //                 obj.GetComponent<GridStat>().x = i;
+    //                 obj.GetComponent<GridStat>().y = j;
+
+    //                 gridArray[i, j] = obj;
+    //             }
+    //         }
+    //     }
+    // }
 }
