@@ -41,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
             enemyNum = 20;
         }*/
         
-        // SpawnEnemyBatch(EnemyType.MINNOW);
+        SpawnEnemyBatch(EnemyType.MINNOW);
         SpawnEnemyBatch(EnemyType.SHARK);
         SpawnEnemyBatch(EnemyType.RANGLER);
 

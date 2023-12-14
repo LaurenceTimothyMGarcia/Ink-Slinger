@@ -3680,7 +3680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8020348682301098026}
-  DamageAmount: 10
+  DamageAmount: 5
   AttackRange: 1
   MovementSpeed: 1
 --- !u!114 &1764373957482683826

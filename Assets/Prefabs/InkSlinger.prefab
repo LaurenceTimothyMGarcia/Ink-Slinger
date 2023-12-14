@@ -24750,7 +24750,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 8085924223744774674}
   movementTime: 0.5
-  strength: 5
+  meleeAttack: 5
+  meleePoweredAttack: 20
+  plusAOEAttack: 15
   facing: 0
   inkSpell1Cost: 5
   inkSpell2Cost: 10
@@ -24782,6 +24784,7 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   easeHealthSlider: {fileID: 0}
   maxHealth: 100
+  isPlayer: 0
 --- !u!114 &7640561348451899067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24797,7 +24800,7 @@ MonoBehaviour:
   inkSlider: {fileID: 0}
   easeInkSlider: {fileID: 0}
   maxInk: 100
-  ink: 0
+  ink: 100
 --- !u!114 &178739244113253311
 MonoBehaviour:
   m_ObjectHideFlags: 0
