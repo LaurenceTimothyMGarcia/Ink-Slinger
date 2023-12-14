@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d5650db7fc80248a0540b0e6a9ce1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkPuddle: {fileID: 6146187731272497082, guid: 2aa329ec9d3ce9943872c0eb61a675c4,
+  inkPuddle: {fileID: 6999085877514920928, guid: 2aa329ec9d3ce9943872c0eb61a675c4,
     type: 3}
   collider: {fileID: 5919075437433915213, guid: 1f4cb3ec9cef8f64a9916a3bb89f1305,
     type: 3}
