@@ -32,14 +32,27 @@ public class GridItemBehavior : MonoBehaviour
         float journeyLength = Vector3.Distance(startPosition, targetPosition);
         // float journeyTime = 0.5f; // Adjust this time as needed for the movement speed
 
+        Vector3 direction = (targetPosition - transform.position).normalized;
         while (Time.time < startTime + movementTime) {
             float distCovered = (Time.time - startTime) * journeyLength / movementTime;
             float fracJourney = distCovered / journeyLength;
             transform.position = Vector3.Lerp(startPosition, targetPosition, fracJourney) + new Vector3(0, groundLvl, 0);
+
+            RotateTowards(direction);
+
             yield return null;
         }
 
         transform.position = targetPosition; // Ensure reaching the exact target position
+    }
+
+    public void RotateTowards(Vector3 dir)
+    {
+        if (dir != Vector3.zero)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * 10f);
+        }
     }
 
     public void GetPathTo(Vector2Int position) {

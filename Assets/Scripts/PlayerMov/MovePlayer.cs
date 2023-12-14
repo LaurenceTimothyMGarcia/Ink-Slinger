@@ -87,23 +87,29 @@ public class MovePlayer : MonoBehaviour
     void AttemptMovement(Direction direction)
     {
         Vector2Int targetPosition = gridItemBehavior.gridPosition;
+        Vector3 moveDirection = Vector3.zero;
+
         // select target grid position depending on inputted direction
         switch (direction)
         {
             case Direction.LEFT: { 
                 targetPosition.x -= 1; 
+                moveDirection = Vector3.left;
                 break; 
             }
             case Direction.RIGHT: { 
                 targetPosition.x += 1; 
+                moveDirection = Vector3.right;
                 break; 
             }
             case Direction.UP: { 
                 targetPosition.y += 1; 
+                moveDirection = Vector3.forward;
                 break; 
             }
             case Direction.DOWN: { 
                 targetPosition.y -= 1; 
+                moveDirection = Vector3.back;
                 break; 
             }
         }
@@ -111,6 +117,7 @@ public class MovePlayer : MonoBehaviour
         if (gridGenerator.IsPositionValid(targetPosition.x, targetPosition.y))
         {
             gridItemBehavior.moveToPosition(targetPosition.x, targetPosition.y, movementTime);
+            gridItemBehavior.RotateTowards(moveDirection);
             turnBasedBehavior.EndTurn();
         }
         StartCoroutine(movementCountdown());
