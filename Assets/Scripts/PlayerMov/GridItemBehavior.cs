@@ -72,7 +72,6 @@ public class GridItemBehavior : MonoBehaviour
     // move on the current path however many steps
     public IEnumerator MoveOnPath(int steps) {
         if(path != null) {
-            if(path.Count > 0) path.Pop(); // removes the first step on the path, which is the position you are already at
             for(int i = 0; i < steps; i++) {
                 if(path.Count > 0) {
                     GameObject target = path.Pop();

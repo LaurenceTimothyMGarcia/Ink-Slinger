@@ -25,32 +25,11 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         gridGenerator = GameObject.Find("GridGenerator").GetComponent<GridBehavior>();
-
-        int enemyNum = 1;
-        /*
-        if (trapdoorSpawn.goLevel1)
-        {
-            enemyNum = 7;
-        }
-        if (trapdoorSpawn.goLevel2)
-        {
-            enemyNum = 15;
-        }
-        if (trapdoorSpawn.goLevel3)
-        {
-            enemyNum = 20;
-        }*/
         
         SpawnEnemyBatch(EnemyType.MINNOW);
         SpawnEnemyBatch(EnemyType.SHARK);
         SpawnEnemyBatch(EnemyType.RANGLER);
 
-        // the actual number of enemies will be enemyNum * 2 (* 3 with minnow)
-        // for (int i = enemyNum; i > 0; i--) {
-        //     SpawnEnemyRandomly(EnemyType.SHARK);
-        //     SpawnEnemyRandomly(EnemyType.RANGLER);
-        //     // SpawnEnemyRandomly(EnemyType.MINNOW);
-        // }
     }
 
     void SpawnEnemyBatch(EnemyType type)

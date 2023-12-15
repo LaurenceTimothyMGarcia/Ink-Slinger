@@ -103,7 +103,6 @@ public class EnemyBehavior : MonoBehaviour
     public void DestroyEnemy(string enemyName)
     {
         FindObjectOfType<AudioManager>().PlaySFX("EnemyDeath");
-        // inkSpawner.SpawnInk(enemyName);
         GameObject iPuddle = Instantiate(inkPuddle);
         iPuddle.GetComponent<GridItemBehavior>().moveToPosition(gridItemBehavior.gridPosition.x, gridItemBehavior.gridPosition.y, 0);
         Destroy(gameObject);
