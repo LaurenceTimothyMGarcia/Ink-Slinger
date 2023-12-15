@@ -264,6 +264,8 @@ public class MovePlayer : MonoBehaviour
                 break;
             }
         }
+
+        // Debug.Log("ENEMY LSIT: " + enemyList)
     }
 
     void aoeAttack(int strength)
